@@ -18,7 +18,7 @@ Arquitectura y Lógica (Luis)
 
 [x] Encapsular al jugador y sus físicas en un Prefab aislado.
 
-[ ] Programar script PlayerInteractor: Lógica con OnTriggerEnter o Raycast para detectar cuándo el jugador está frente a un objeto interactuable y presiona una tecla (ej. 'E').
+[x] Programar script PlayerInteractor: Lógica con OnTriggerEnter o Raycast para detectar cuándo el jugador está frente a un objeto interactuable y presiona una tecla (ej. 'E').
 
 [ ] Programar script TuberiaBase: Una clase que herede de MonoBehaviour e implemente IInteractable para probar que el jugador puede "reparar" un cubo.
 
