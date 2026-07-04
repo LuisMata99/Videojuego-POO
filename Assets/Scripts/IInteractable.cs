@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface Iinteractable
+public interface IInteractable
 {
-    void Interactura(PlayerMovement jugador);
+    void Interact(PlayerMovement jugador);
 }
