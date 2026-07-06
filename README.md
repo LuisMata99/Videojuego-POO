@@ -20,7 +20,13 @@ Arquitectura y Lógica (Luis)
 
 [x] Programar script PlayerInteractor: Lógica con OnTriggerEnter o Raycast para detectar cuándo el jugador está frente a un objeto interactuable y presiona una tecla (ej. 'E').
 
-[ ] Programar script TuberiaBase: Una clase que herede de MonoBehaviour e implemente IInteractable para probar que el jugador puede "reparar" un cubo.
+[x] Programar script TuberiaBase: Una clase que herede de MonoBehaviour e implemente IInteractable para probar que el jugador puede "reparar" un cubo.
+
+[x] Implementar sistema de herencia para herramientas (HerramientaBase, LlaveInglesa, CintaAdhesiva).
+
+[x] Refactorizar TuberiaBase para validación de averías (Polimorfismo / Máquina de estados).
+
+[x] Programar la lógica de entorno: Dispensadores infinitos (Instantiate) y Mesas de gestión de inventario temporal.
 
 Level Design y Entorno (Tena)
 
@@ -56,3 +62,18 @@ Props y Modelado Base (Axel)
 
 ⚪ Fase 5: Compilación (Semana 5)
 [ ] Equipo: Generar Build final (.exe) y testear framerate en el equipo de presentación.
+
+## 🚀 Estado Actual: Fase 2 (Caja Blanca Lógica) - Completada (05 de julio de 2026)
+
+La arquitectura base de interacciones y físicas ha sido implementada exitosamente utilizando principios de Programación Orientada a Objetos (POO).
+
+### Sistemas Implementados:
+* **Movimiento Isométrico:** El `PlayerMovement` ahora calcula la traslación y rotación (`Quaternion`) de forma relativa a la cámara principal.
+* **Sistema de Herramientas (Herencia):** Se estructuró la clase abstracta/padre `HerramientaBase` y sus clases hijas (`LlaveInglesa`, `CintaAdhesiva`).
+* **Interacción Espacial (Polimorfismo):** Las tuberías (`TuberiaBase`) ahora exigen validación estricta de tipos de avería cruzando datos con la herramienta en mano.
+* **Gestión de Entorno:** Implementación de `DispensadorHerramientas` (clonación infinita de prefabs) y `MesaMostrador` (gestión de almacenamiento temporal).
+
+### ⚠️ Lineamientos para Integración de Modelos 3D (Arte)
+Para que los modelos definitivos de las herramientas y mesas sean reconocidos por el sistema lógico, el equipo de diseño debe asegurar que:
+1. Cada objeto cuente con su respectivo componente de colisión (`BoxCollider`, `SphereCollider`, etc.) activo.
+2. El modelo visual esté asignado estrictamente a la Layer `Interactable` en el Inspector de Unity.
