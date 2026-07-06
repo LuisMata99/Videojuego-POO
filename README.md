@@ -40,11 +40,11 @@ Level Design y Entorno (Tena)
 
 Props y Modelado Base (Axel)
 
-[ ] Crear Prefab aislado: Tuberia_Rota (Usar cilindros primitivos).
+[x] Crear Prefab aislado: Tuberia_Rota (Usar cilindros primitivos).
 
-[ ] Crear Prefab aislado: Mesa_Herramientas (Usar cubos primitivos).
+[x] Crear Prefab aislado: Mesa_Herramientas (Usar cubos primitivos).
 
-[ ] Crear Prefabs aislados: Herramientas básicas (Cinta, Llave inglesa).
+[x] Crear Prefabs aislados: Herramientas básicas (Cinta, Llave inglesa).
 
 ⚪ Fase 3: Integración Visual y UI (Semana 2)
 [ ] Axel: Diseñar el Canvas UI (Temporizador global y barra de "Nivel de Inundación").
