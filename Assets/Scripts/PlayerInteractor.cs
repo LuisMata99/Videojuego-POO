@@ -13,6 +13,11 @@ public class PlayerInteractor : MonoBehaviour
 
     private PlayerMovement playerMovement; //Almacena la referencia del script de movimiento
 
+    // -------------------------------------------------------------------------------
+    public Transform puntoDeAgarre; // Variables para implementar la lógica de las herramientas
+    public GameObject objetoEnMano;
+    // -------------------------------------------------------------------------------
+
     private void Awake()
     {
         // Se obtiene y se guarda la referencia en memoria una sola vez al instanciar el Prefab
@@ -22,9 +27,15 @@ public class PlayerInteractor : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) // Método que permite que la interacción se lleve a cabo solamentecuando
-        {                               // la tecla 'E' esté presionada
+        if (Input.GetKeyDown(KeyCode.E)) // Evalúa que la interacción se lleve a cabo si
+        {                               // la tecla 'E' está presionada
             TryInteract();
+        }
+
+        if (Input.GetKeyDown(KeyCode.G) && objetoEnMano != null) // Si se presiona la G y el jugador tiene un objeto en mano
+        {
+            objetoEnMano.GetComponent<HerramientaBase>().Soltar(transform.forward); // Se llama al método soltar
+            objetoEnMano = null; // Se actualiza para evitar errores como que el jugador no pueda recoger un objeto si sus manos están vacías
         }
 
     }
@@ -37,9 +48,12 @@ public class PlayerInteractor : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            col.TryGetComponent<IInteractable>(out IInteractable interactable);
-            interactable.Interact(playerMovement);
-            break;
+            if (col.TryGetComponent<IInteractable>(out IInteractable interactable))
+            {
+                interactable.Interact(this);
+                break;
+            }
+            
         }
     }
 }

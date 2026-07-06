@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,12 +10,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 _direccionMovimiento;
 
+    private Transform _cameraTransform;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+
+        _cameraTransform = Camera.main.transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float calcularHorizontal = Input.GetAxisRaw("Horizontal");
@@ -37,5 +39,11 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         _rb.MovePosition(transform.position + _direccionMovimiento * velocidad * Time.fixedDeltaTime);
+
+        if (_direccionMovimiento != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(_direccionMovimiento);
+            _rb.MoveRotation(targetRotation);
+        }
     }
 }
