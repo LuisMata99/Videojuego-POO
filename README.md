@@ -32,11 +32,11 @@ Level Design y Entorno (Tena)
 
 [x] Crear la escena principal (MainScene) y los elementos primarios (Piso, Paredes).
 
-[ ] Alinear los vértices de los muros usando Vertex Snapping (V) para cerrar la geometría.
+[x] Alinear los vértices de los muros usando Vertex Snapping (V) para cerrar la geometría.
 
-[ ] Configurar el posicionamiento de la Main Camera (Orthographic, Rotación X:30/45, Y:45).
+[x] Configurar el posicionamiento de la Main Camera (Orthographic, Rotación X:30/45, Y:45).
 
-[ ] Auditar e implementar BoxCollider en todos los objetos estáticos (Pisos, Muros, Mesas) para evitar caídas al vacío.
+[x] Auditar e implementar BoxCollider en todos los objetos estáticos (Pisos, Muros, Mesas) para evitar caídas al vacío.
 
 Props y Modelado Base (Axel)
 
