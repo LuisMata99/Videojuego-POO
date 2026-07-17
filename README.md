@@ -47,7 +47,7 @@ Props y Modelado Base (Axel)
 [x] Crear Prefabs aislados: Herramientas básicas (Cinta, Llave inglesa).
 
 ⚪ Fase 3: Integración Visual y UI (Semana 2)
-[x] Axel: Diseñar el Canvas UI (Temporizador global y barra de "Nivel de Inundación").
+[x] Axel: Diseñar el Canvas UI (Temporizador global, barra de "Nivel de Inundación", menú de pausa y menú final).
 
 [ ] Luis: Conectar las variables de los scripts (C#) con los elementos de texto y barras del Canvas.
 
