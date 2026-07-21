@@ -32,11 +32,11 @@ Level Design y Entorno (Tena)
 
 [x] Crear la escena principal (MainScene) y los elementos primarios (Piso, Paredes).
 
-[ ] Alinear los vértices de los muros usando Vertex Snapping (V) para cerrar la geometría.
+[x] Alinear los vértices de los muros usando Vertex Snapping (V) para cerrar la geometría.
 
-[ ] Configurar el posicionamiento de la Main Camera (Orthographic, Rotación X:30/45, Y:45).
+[x] Configurar el posicionamiento de la Main Camera (Orthographic, Rotación X:30/45, Y:45).
 
-[ ] Auditar e implementar BoxCollider en todos los objetos estáticos (Pisos, Muros, Mesas) para evitar caídas al vacío.
+[x] Auditar e implementar BoxCollider en todos los objetos estáticos (Pisos, Muros, Mesas) para evitar caídas al vacío.
 
 Props y Modelado Base (Axel)
 
@@ -47,7 +47,7 @@ Props y Modelado Base (Axel)
 [x] Crear Prefabs aislados: Herramientas básicas (Cinta, Llave inglesa).
 
 ⚪ Fase 3: Integración Visual y UI (Semana 2)
-[x] Axel: Diseñar el Canvas UI (Temporizador global y barra de "Nivel de Inundación").
+[x] Axel: Diseñar el Canvas UI (Temporizador global, barra de "Nivel de Inundación", menú de pausa y menú final).
 
 [ ] Luis: Conectar las variables de los scripts (C#) con los elementos de texto y barras del Canvas.
 
