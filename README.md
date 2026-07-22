@@ -58,12 +58,16 @@ Props y Modelado Base (Axel)
 
 [ ] Luis: Validar la escalabilidad de la herencia y polimorfismo en los interactuables.
 
+[ ] Luis: Auditar la prioridad de interacción (OverlapSphere/Raycast) para evitar que el jugador seleccione el objeto equivocado cuando hay varios juntos.
+
+[ ] Axel / Equipo: Diseñar e integrar el menú de "Fin del Juego" (Game Over/Victoria) para conectarlo al FloodManager.
+
 [ ] Equipo: Feature Freeze (Congelamiento de nuevas mecánicas). Destruir el juego buscando bugs, colisiones rotas y NullReferenceExceptions.
 
 ⚪ Fase 5: Compilación (Semana 5)
 [ ] Equipo: Generar Build final (.exe) y testear framerate en el equipo de presentación.
 
-## 🚀 Estado Actual: Fase 2 (Caja Blanca Lógica) - Completada (05 de julio de 2026)
+## 🚀 Estado Actual: Fase 2 (Caja Blanca Lógica) - Completada (05 de julio de 2026) LUIS
 
 La arquitectura base de interacciones y físicas ha sido implementada exitosamente utilizando principios de Programación Orientada a Objetos (POO).
 
@@ -77,3 +81,6 @@ La arquitectura base de interacciones y físicas ha sido implementada exitosamen
 Para que los modelos definitivos de las herramientas y mesas sean reconocidos por el sistema lógico, el equipo de diseño debe asegurar que:
 1. Cada objeto cuente con su respectivo componente de colisión (`BoxCollider`, `SphereCollider`, etc.) activo.
 2. El modelo visual esté asignado estrictamente a la Layer `Interactable` en el Inspector de Unity.
+
+Estado Actual: Fase 3 - Completada (021 de julio de 2026) LUIS
+La Fase 3 (UI y Temporizador) está completamente terminada y validada. Se implementó el Patrón Observer en C# para desacoplar la lógica matemática (FloodManager) del renderizado gráfico (UIManager). El sistema calcula el tiempo y el nivel de agua en tiempo real. Por parte del equipo de trabajo, Tena y Axel ya integraron el posicionamiento definitivo de la cámara y la alineación del escenario. El repositorio en GitHub está sincronizado (merge conflicts resueltos) y el entorno local está libre de errores de compilación.
