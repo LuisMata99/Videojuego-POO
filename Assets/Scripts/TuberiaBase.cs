@@ -34,23 +34,22 @@ public class TuberiaBase : MonoBehaviour, IInteractable
             return;
         }
 
-        // Extracción de componentes (Casting de tipos)
-        LlaveInglesa llave = interactor.objetoEnMano.GetComponent<LlaveInglesa>();
-        CintaAdhesiva cinta = interactor.objetoEnMano.GetComponent<CintaAdhesiva>();
-
-        // Validación Lógica: Cruzamos el tipo de avería con el tipo de herramienta
-        if (tipoDeAveria == TipoAveria.FugaFuerte && llave != null)
+        if (interactor.objetoEnMano.TryGetComponent<HerramientaBase>(out HerramientaBase herramienta))
         {
-            RepararTuberia();
-        }
-        else if (tipoDeAveria == TipoAveria.Fisura && cinta != null)
-        {
-            RepararTuberia();
+            if (herramienta.PuedeReparar(tipoDeAveria))
+            {
+                RepararTuberia();
+            }
+            else
+            {
+                Debug.Log("Herramienta incorrecta para este tipo de avería.");
+            }
         }
         else
         {
-            Debug.Log("Herramienta incorrecta para este tipo de avería.");
+            Debug.Log("El objeto que sostienes no es una herramienta válida para reparaciones.");
         }
+
     }
     private void RepararTuberia()
     {

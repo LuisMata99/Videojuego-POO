@@ -2,48 +2,53 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private float velocidad = 5f;
 
-    [SerializeField]
-    private float velocidad = 5f;
+    // Variable para controlar qué tan rápido gira el personaje
+    [SerializeField] private float velocidadRotacion = 15f;
 
-    private Rigidbody _rb;
-
-    private Vector3 _direccionMovimiento;
-
-    private Transform _cameraTransform;
+    private Rigidbody rb;
+    private Vector3 direccionMovimiento;
+    private Transform transformCamara;
 
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
-
-        _cameraTransform = Camera.main.transform;
+        rb = GetComponent<Rigidbody>();
+        transformCamara = Camera.main.transform; // Caché inicial
     }
 
     void Update()
     {
-        float calcularHorizontal = Input.GetAxisRaw("Horizontal");
-        float calcularVertical = Input.GetAxisRaw("Vertical");
+        float inputHorizontal = Input.GetAxisRaw("Horizontal");
+        float inputVertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 forwardCam = Camera.main.transform.forward;
-        Vector3 rightCam = Camera.main.transform.right;
+        Vector3 forwardCam = transformCamara.forward;
+        Vector3 rightCam = transformCamara.right;
 
+        // Se aplanan los vectores
         forwardCam.y = 0f;
         rightCam.y = 0f;
 
         forwardCam.Normalize();
         rightCam.Normalize();
 
-        _direccionMovimiento = (forwardCam * calcularVertical + rightCam * calcularHorizontal).normalized;
+        direccionMovimiento = (forwardCam * inputVertical + rightCam * inputHorizontal).normalized;
     }
 
     void FixedUpdate()
     {
-        _rb.MovePosition(transform.position + _direccionMovimiento * velocidad * Time.fixedDeltaTime);
+        // 1. Movimiento
+        rb.MovePosition(rb.position + direccionMovimiento * velocidad * Time.fixedDeltaTime);
 
-        if (_direccionMovimiento != Vector3.zero)
+        // 2. Rotación
+        if (direccionMovimiento != Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(_direccionMovimiento);
-            _rb.MoveRotation(targetRotation);
+            Quaternion rotacionObjetivo = Quaternion.LookRotation(direccionMovimiento);
+
+            // POR QUÉ: Quaternion.Slerp suaviza la transición entre la rotación actual y el objetivo.
+            Quaternion rotacionSuavizada = Quaternion.Slerp(rb.rotation, rotacionObjetivo, velocidadRotacion * Time.fixedDeltaTime);
+
+            rb.MoveRotation(rotacionSuavizada);
         }
     }
 }

@@ -31,7 +31,7 @@ public class MesaMostrador : MonoBehaviour, IInteractable
         if (jugadorOcupado && !mesaOcupada)
         {
             herramientaAlmacenada = interactor.objetoEnMano;
-            interactor.objetoEnMano = null;
+            interactor.RemoverObjeto();
 
             herramientaAlmacenada.transform.SetParent(puntoDeMesa);
             herramientaAlmacenada.transform.localPosition = Vector3.zero;

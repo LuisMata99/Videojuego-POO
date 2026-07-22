@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class PlayerInteractor : MonoBehaviour
 {
+    [SerializeField] private KeyCode interactionKey = KeyCode.E;
+    
+    [SerializeField] private KeyCode dropKey = KeyCode.G;
+
     [SerializeField] // Permite modificar las variables privadas desde el inspector sin necesidad de cambiar el código
     private float interactionRadius; // Radio de la interacción
 
@@ -14,8 +18,10 @@ public class PlayerInteractor : MonoBehaviour
     private PlayerMovement playerMovement; //Almacena la referencia del script de movimiento
 
     // -------------------------------------------------------------------------------
-    public Transform puntoDeAgarre; // Variables para implementar la lógica de las herramientas
-    public GameObject objetoEnMano;
+    [SerializeField]
+    private Transform puntoDeAgarre; // Variables para implementar la lógica de las herramientas
+
+    public GameObject objetoEnMano { get; private set; }
     // -------------------------------------------------------------------------------
 
     private void Awake()
@@ -27,17 +33,21 @@ public class PlayerInteractor : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) // Evalúa que la interacción se lleve a cabo si
-        {                               // la tecla 'E' está presionada
+        // Evaluamos la interacción usando la variable configurada en el Inspector
+        if (Input.GetKeyDown(interactionKey))
+        {
             TryInteract();
         }
 
-        if (Input.GetKeyDown(KeyCode.G) && objetoEnMano != null) // Si se presiona la G y el jugador tiene un objeto en mano
+        // Evaluamos soltar el objeto usando la variable configurada
+        if (Input.GetKeyDown(dropKey) && objetoEnMano != null)
         {
-            objetoEnMano.GetComponent<HerramientaBase>().Soltar(transform.forward); // Se llama al método soltar
-            objetoEnMano = null; // Se actualiza para evitar errores como que el jugador no pueda recoger un objeto si sus manos están vacías
+            if (objetoEnMano.TryGetComponent<HerramientaBase>(out HerramientaBase herramienta))
+            {
+                herramienta.Soltar(transform.forward);
+                RemoverObjeto();
+            }
         }
-
     }
 
     private void TryInteract()
@@ -55,5 +65,26 @@ public class PlayerInteractor : MonoBehaviour
             }
             
         }
+    }
+
+    public void EquiparObjeto(GameObject nuevoObjeto)
+    {
+        if (objetoEnMano != null)
+        {
+            Debug.LogWarning("El jugador ya tiene un objeto en mano.");
+            return;
+        }
+
+        objetoEnMano = nuevoObjeto;
+
+        // Emparentar visualmente
+        objetoEnMano.transform.SetParent(puntoDeAgarre);
+        objetoEnMano.transform.localPosition = Vector3.zero;
+        objetoEnMano.transform.localRotation = Quaternion.identity;
+    }
+
+    public void RemoverObjeto()
+    {
+        objetoEnMano = null;
     }
 }
