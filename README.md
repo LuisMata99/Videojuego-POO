@@ -49,7 +49,7 @@ Props y Modelado Base (Axel)
 ⚪ Fase 3: Integración Visual y UI (Semana 2)
 [x] Axel: Diseñar el Canvas UI (Temporizador global, barra de "Nivel de Inundación", menú de pausa y menú final).
 
-[ ] Luis: Conectar las variables de los scripts (C#) con los elementos de texto y barras del Canvas.
+[x] Luis: Conectar las variables de los scripts (C#) con los elementos de texto y barras del Canvas.
 
 [ ] Tena: Sustituir la geometría primitiva por los modelos 3D finales (si aplican) y configurar luces iniciales.
 
