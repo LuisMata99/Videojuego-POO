@@ -7,18 +7,13 @@ public enum TipoAveria
     Fisura      // Requiere Cinta Adhesiva
 }
 
-[RequireComponent(typeof(MeshRenderer))] // Obliga a Unity a añadir un MeshRender en caso de no haber uno para no crear una referencia nula
 public class TuberiaBase : MonoBehaviour, IInteractable
 {
     public TipoAveria tipoDeAveria;
 
     private bool isRepaired = false;
-    private MeshRenderer meshRender; // Referencia al componente MeshRender (Encargado de hacer visible el objeto en escena)
+    [SerializeField] private MeshRenderer renderizadoVisual; // Referencia al componente MeshRender (Encargado de hacer visible el objeto en escena)
     
-    void Start()
-    {
-        meshRender = GetComponent<MeshRenderer>(); // Llamada a la referencia
-    }
 
     public void Interact(PlayerInteractor interactor) // Implementación del método para interactuar (Polimorfismo)
     {
@@ -54,7 +49,7 @@ public class TuberiaBase : MonoBehaviour, IInteractable
     private void RepararTuberia()
     {
         isRepaired = true;
-        meshRender.material.color = Color.blue;
+        renderizadoVisual.material.color = Color.blue;
         Debug.Log("¡Tubería reparada exitosamente!");
     }
 }
