@@ -51,16 +51,18 @@ Props y Modelado Base (Axel)
 
 [x] Luis: Conectar las variables de los scripts (C#) con los elementos de texto y barras del Canvas.
 
-[ ] Tena: Sustituir la geometría primitiva por los modelos 3D finales (si aplican) y configurar luces iniciales.
+[x] Tena: Sustituir la geometría primitiva por los modelos 3D finales (si aplican) y configurar luces iniciales.
 
 ⚪ Fase 4: Refinamiento, Feedback y Pruebas (Semanas 3 y 4)
-[ ] Equipo: Agregar partículas de agua y feedback de sonido al interactuar.
+[x] Luis: Validar la escalabilidad de la herencia y polimorfismo en los interactuables (Auditado y aprobado).
 
-[ ] Luis: Validar la escalabilidad de la herencia y polimorfismo en los interactuables.
+[x] Luis: Auditar la prioridad de interacción. Se reemplazó OverlapSphere por SphereCast direccional con calibración espacial y filtrado por Layer.
 
-[ ] Luis: Auditar la prioridad de interacción (OverlapSphere/Raycast) para evitar que el jugador seleccione el objeto equivocado cuando hay varios juntos.
+[ ] Luis: Programar lógica de Feedback Visual en PlayerInteractor para encender el Canvas de los objetos cuando el rayo los detecte.
 
-[ ] Axel / Equipo: Diseñar e integrar el menú de "Fin del Juego" (Game Over/Victoria) para conectarlo al FloodManager.
+[ ] Axel / Equipo: Diseñar e integrar el menú de "Fin del Juego" (Game Over/Victoria) y conectarlo al FloodManager (Menús listos, falta integración lógica).
+
+[ ] Equipo: Agregar feedback de sonido al interactuar (Partículas de agua ya implementadas por Axel).
 
 [ ] Equipo: Feature Freeze (Congelamiento de nuevas mecánicas). Destruir el juego buscando bugs, colisiones rotas y NullReferenceExceptions.
 
