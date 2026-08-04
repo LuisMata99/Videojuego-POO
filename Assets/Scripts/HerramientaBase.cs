@@ -32,7 +32,7 @@ public abstract class HerramientaBase : MonoBehaviour, IInteractable
         rb.isKinematic = false;
         col.enabled = true;
 
-        rb.AddForce(direccionDelJugador * 3f, ForceMode.Impulse);
+        rb.AddForce((direccionDelJugador + Vector3.up).normalized * 3f, ForceMode.Impulse);
     }
 
     public abstract bool PuedeReparar(TipoAveria averia);
