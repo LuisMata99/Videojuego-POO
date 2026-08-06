@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class HerramientaBase : MonoBehaviour, IInteractable
@@ -6,10 +7,14 @@ public abstract class HerramientaBase : MonoBehaviour, IInteractable
     private Rigidbody rb;
     private Collider col;
 
+    private FeedbackVisualInteractuable feedbackVisual;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>(); // Llamada a las referencias 
         col = GetComponent<Collider>();
+
+        feedbackVisual = GetComponent<FeedbackVisualInteractuable>();
     }
 
     public void Interact(PlayerInteractor interactor) // Implementación del método para interactuar (Polimorfismo)
@@ -33,6 +38,15 @@ public abstract class HerramientaBase : MonoBehaviour, IInteractable
         col.enabled = true;
 
         rb.AddForce((direccionDelJugador + Vector3.up).normalized * 3f, ForceMode.Impulse);
+    }
+
+    public virtual void Enfocar()
+    {
+        if (feedbackVisual != null) feedbackVisual.Encender();
+    }
+    public virtual void Desenfocar()
+    {
+        if (feedbackVisual != null) feedbackVisual.Apagar();
     }
 
     public abstract bool PuedeReparar(TipoAveria averia);

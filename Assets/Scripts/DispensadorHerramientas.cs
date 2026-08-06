@@ -4,6 +4,13 @@ public class DispensadorDeHerramientas : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject prefabHerramienta;
 
+    private FeedbackVisualInteractuable feedbackVisual;
+
+    private void Awake()
+    {
+        feedbackVisual = GetComponent<FeedbackVisualInteractuable>();
+    }
+
     public void Interact(PlayerInteractor interactor)
     {
         // Guard Clause: Si el jugador ya tiene algo en las manos, no se le da nada.
@@ -22,5 +29,13 @@ public class DispensadorDeHerramientas : MonoBehaviour, IInteractable
         {
             interactable.Interact(interactor);
         }
+    }
+    public void Enfocar()
+    {
+        if (feedbackVisual != null) feedbackVisual.Encender();
+    }
+    public void Desenfocar()
+    {
+        if (feedbackVisual != null) feedbackVisual.Apagar();
     }
 }

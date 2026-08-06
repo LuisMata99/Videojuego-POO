@@ -9,6 +9,13 @@ public enum TipoAveria
 
 public class TuberiaBase : MonoBehaviour, IInteractable
 {
+    private FeedbackVisualInteractuable feedbackVisual;
+
+    protected virtual void Awake()
+    {
+        feedbackVisual = GetComponent < FeedbackVisualInteractuable >();
+    }
+
     public TipoAveria tipoDeAveria;
 
     private bool isRepaired = false;
@@ -45,6 +52,15 @@ public class TuberiaBase : MonoBehaviour, IInteractable
             Debug.Log("El objeto que sostienes no es una herramienta válida para reparaciones.");
         }
 
+    }
+    public virtual void Enfocar()
+    {
+        if (feedbackVisual != null) feedbackVisual.Encender();
+    }
+
+    public virtual void Desenfocar()
+    {
+        if (feedbackVisual != null) feedbackVisual.Apagar();
     }
     private void RepararTuberia()
     {

@@ -1,8 +1,16 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MesaMostrador : MonoBehaviour, IInteractable
 {
     [SerializeField] private Transform puntoDeMesa; // Arrastra aquí el objeto hijo "PuntoDeMesa"
+
+    private FeedbackVisualInteractuable feedbackVisual;
+
+    private void Awake()
+    {
+        feedbackVisual = GetComponent < FeedbackVisualInteractuable >();
+    }
 
     // Es privada porque la controla el código, el inspector no debe tocarla.
     private GameObject herramientaAlmacenada;
@@ -47,4 +55,15 @@ public class MesaMostrador : MonoBehaviour, IInteractable
         }
         herramientaAlmacenada = null;
     }
+
+    public void Enfocar()
+    {
+        if (feedbackVisual != null) feedbackVisual.Encender();
+    }
+
+    public void Desenfocar()
+    {
+        if (feedbackVisual != null) feedbackVisual.Apagar();
+    }
+
 }
