@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI; // Necesario para interactuar con el Slider del Canvas
+using UnityEngine.UI;
 
 public class FloodController : MonoBehaviour
 {
@@ -25,26 +25,46 @@ public class FloodController : MonoBehaviour
 
     private float currentFloodValue = 0f;
     private PipeState currentState = PipeState.Intact;
+    private bool isLevelFlooded = false; // Control para ejecutar el fin de juego una sola vez
 
     void Start()
     {
         // Inicializamos la barra y el estado
         currentFloodValue = 0f;
-        floodBar.value = currentFloodValue;
+        if (floodBar != null) floodBar.value = currentFloodValue;
         SetPipeState(PipeState.Intact);
     }
 
     void Update()
     {
+        // Si el nivel ya finalizó por inundación, detenemos la actualización
+        if (isLevelFlooded) return;
+
         // 1. Aumentar el nivel de inundación gradualmente usando cálculo de tiempo delta
         currentFloodValue += floodIncreaseRate * Time.deltaTime;
 
         // Clampeamos el valor para que matemáticamente no pase de 1
         currentFloodValue = Mathf.Clamp01(currentFloodValue);
-        floodBar.value = currentFloodValue;
+
+        if (floodBar != null) floodBar.value = currentFloodValue;
 
         // 2. Evaluar los umbrales para cambiar de estado
         CheckFloodThresholds();
+
+        // 3. Evaluar condición de fin de juego (Llegada al 100%)
+        if (currentFloodValue >= 1.0f)
+        {
+            isLevelFlooded = true;
+
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.NivelInundado();
+            }
+            else
+            {
+                Debug.LogError("FloodController: No se encontró la instancia de GameManager en la escena.");
+            }
+        }
     }
 
     void CheckFloodThresholds()
@@ -68,21 +88,21 @@ public class FloodController : MonoBehaviour
         switch (currentState)
         {
             case PipeState.Intact:
-                pipeRenderer.material = matIntact;
-                fxFissureWater.SetActive(false);
-                fxBrokenGeyser.SetActive(false);
+                if (pipeRenderer != null) pipeRenderer.material = matIntact;
+                if (fxFissureWater != null) fxFissureWater.SetActive(false);
+                if (fxBrokenGeyser != null) fxBrokenGeyser.SetActive(false);
                 break;
 
             case PipeState.Fissured:
-                pipeRenderer.material = matWet;
-                fxFissureWater.SetActive(true);
-                fxBrokenGeyser.SetActive(false);
+                if (pipeRenderer != null) pipeRenderer.material = matWet;
+                if (fxFissureWater != null) fxFissureWater.SetActive(true);
+                if (fxBrokenGeyser != null) fxBrokenGeyser.SetActive(false);
                 break;
 
             case PipeState.Broken:
-                pipeRenderer.material = matCritical;
-                fxFissureWater.SetActive(false);
-                fxBrokenGeyser.SetActive(true);
+                if (pipeRenderer != null) pipeRenderer.material = matCritical;
+                if (fxFissureWater != null) fxFissureWater.SetActive(false);
+                if (fxBrokenGeyser != null) fxBrokenGeyser.SetActive(true);
                 break;
         }
     }
