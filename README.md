@@ -1,88 +1,49 @@
-📋 Videojuego POO - Estado del Proyecto (Semana 1)
+📋 Videojuego POO - Estado del Proyecto (Semana 1 a 4)
 
 🟢 Fase 1: Configuración del Entorno y Control de Versiones (Completado)
 [x] Inicializar repositorio en GitHub y clonar localmente.
-
 [x] Resolver conflictos de sincronización y caché (Eliminación de OneDrive).
-
 [x] Configurar variables globales de identidad en Git (user.name / user.email).
-
 [x] Habilitar la lectura de Inputs Clásicos (Both) en los Player Settings de Unity.
 
-🟡 Fase 2: Construcción de la "Caja Blanca" (En Progreso)
-Arquitectura y Lógica (Luis)
-
+🟢 Fase 2: Construcción de la "Caja Blanca" (Completado)
 [x] Crear el contrato base de interacciones (IInteractable).
-
 [x] Programar la lógica vectorial de movimiento isométrico (PlayerMovement).
-
 [x] Encapsular al jugador y sus físicas en un Prefab aislado.
-
-[x] Programar script PlayerInteractor: Lógica con OnTriggerEnter o Raycast para detectar cuándo el jugador está frente a un objeto interactuable y presiona una tecla (ej. 'E').
-
-[x] Programar script TuberiaBase: Una clase que herede de MonoBehaviour e implemente IInteractable para probar que el jugador puede "reparar" un cubo.
-
+[x] Programar script PlayerInteractor: Lógica con SphereCast/LayerMask para detección precisa.
+[x] Programar script TuberiaBase: Clase con herencia e implementación de IInteractable.
 [x] Implementar sistema de herencia para herramientas (HerramientaBase, LlaveInglesa, CintaAdhesiva).
-
 [x] Refactorizar TuberiaBase para validación de averías (Polimorfismo / Máquina de estados).
+[x] Programar la lógica de entorno: Dispensadores y Mesas de gestión temporal.
 
-[x] Programar la lógica de entorno: Dispensadores infinitos (Instantiate) y Mesas de gestión de inventario temporal.
-
-Level Design y Entorno (Tena)
-
-[x] Crear la escena principal (MainScene) y los elementos primarios (Piso, Paredes).
-
-[x] Alinear los vértices de los muros usando Vertex Snapping (V) para cerrar la geometría.
-
-[x] Configurar el posicionamiento de la Main Camera (Orthographic, Rotación X:30/45, Y:45).
-
-[x] Auditar e implementar BoxCollider en todos los objetos estáticos (Pisos, Muros, Mesas) para evitar caídas al vacío.
-
-Props y Modelado Base (Axel)
-
-[x] Crear Prefab aislado: Tuberia_Rota (Usar cilindros primitivos).
-
-[x] Crear Prefab aislado: Mesa_Herramientas (Usar cubos primitivos).
-
-[x] Crear Prefabs aislados: Herramientas básicas (Cinta, Llave inglesa).
-
-⚪ Fase 3: Integración Visual y UI (Semana 2)
+🟡 Fase 3: Integración Visual y UI (En Progreso)
 [x] Axel: Diseñar el Canvas UI (Temporizador global, barra de "Nivel de Inundación", menú de pausa).
-
 [x] Luis: Conectar las variables de los scripts (C#) con los elementos de texto y barras del Canvas.
+[x] Luis: Crear e inyectar Prefab anidado "UI_BotonInteraccion" en World Space para todos los interactuables.
+[ ] Axel / Tena: Inyectar los modelos 3D finales dentro de los Prefabs lógicos de Luis y ajustar sus BoxColliders.
+[ ] Tena: Ensamblar la MainScene usando ESTRICTAMENTE los Prefabs maestros de la carpeta lógica.
 
-[x] Tena: Sustituir la geometría primitiva por los modelos 3D finales (si aplican) y configurar luces iniciales.
-
-⚪ Fase 4: Refinamiento, Feedback y Pruebas (Semanas 3 y 4)
-[x] Luis: Validar la escalabilidad de la herencia y polimorfismo en los interactuables (Auditado y aprobado).
-
-[x] Luis: Auditar la prioridad de interacción. Se reemplazó OverlapSphere por SphereCast direccional con calibración espacial y filtrado por Layer.
-
-[ ] Luis: Programar lógica de Feedback Visual en PlayerInteractor para encender el Canvas de los objetos cuando el rayo los detecte.
-
-[ ] Axel / Equipo: Diseñar e integrar el menú de "Fin del Juego" (Game Over/Victoria) y conectarlo al FloodManager (Menús listos, falta integración lógica).
-
-[ ] Equipo: Agregar feedback de sonido al interactuar (Partículas de agua ya implementadas por Axel).
-
-[ ] Equipo: Feature Freeze (Congelamiento de nuevas mecánicas). Destruir el juego buscando bugs, colisiones rotas y NullReferenceExceptions.
+🟡 Fase 4: Refinamiento, Feedback y Pruebas (En Progreso)
+[x] Luis: Validar la escalabilidad de la herencia y polimorfismo en los interactuables.
+[x] Luis: Auditar la prioridad de interacción (SphereCast y capas físicas) para evitar selección errónea de objetos.
+[ ] Axel: Integrar el script GameManager mediante el patrón Observer (Action) para escuchar el evento OnTuberiaReparada.
+[ ] Equipo: Agregar partículas de agua y feedback de sonido al interactuar (Audios ya preparados).
+[ ] Axel: Diseñar e integrar el menú de "Fin del Juego" (Game Over/Victoria).
+[ ] Equipo: Feature Freeze. Testeo exhaustivo para destruir bugs, colisiones rotas y NullReferenceExceptions.
 
 ⚪ Fase 5: Compilación (Semana 5)
 [ ] Equipo: Generar Build final (.exe) y testear framerate en el equipo de presentación.
 
-## 🚀 Estado Actual: Fase 2 (Caja Blanca Lógica) - Completada (05 de julio de 2026) LUIS
+---
 
-La arquitectura base de interacciones y físicas ha sido implementada exitosamente utilizando principios de Programación Orientada a Objetos (POO).
+## 🚀 Estado Actual: Fase 4 (Auditoría Lógica e Integración) - (08 de agosto de 2026) LUIS
 
-### Sistemas Implementados:
-* **Movimiento Isométrico:** El `PlayerMovement` ahora calcula la traslación y rotación (`Quaternion`) de forma relativa a la cámara principal.
-* **Sistema de Herramientas (Herencia):** Se estructuró la clase abstracta/padre `HerramientaBase` y sus clases hijas (`LlaveInglesa`, `CintaAdhesiva`).
-* **Interacción Espacial (Polimorfismo):** Las tuberías (`TuberiaBase`) ahora exigen validación estricta de tipos de avería cruzando datos con la herramienta en mano.
-* **Gestión de Entorno:** Implementación de `DispensadorHerramientas` (clonación infinita de prefabs) y `MesaMostrador` (gestión de almacenamiento temporal).
+El sistema de interacción espacial está 100% desacoplado y funcional. Se resolvieron los cuellos de botella de renderizado y escalabilidad de los Canvas en World Space.
 
-### ⚠️ Lineamientos para Integración de Modelos 3D (Arte)
-Para que los modelos definitivos de las herramientas y mesas sean reconocidos por el sistema lógico, el equipo de diseño debe asegurar que:
-1. Cada objeto cuente con su respectivo componente de colisión (`BoxCollider`, `SphereCollider`, etc.) activo.
-2. El modelo visual esté asignado estrictamente a la Layer `Interactable` en el Inspector de Unity.
+### Sistemas Implementados y Optimizados:
+* **Escáner Espacial Avanzado:** El `PlayerInteractor` abandonó la dependencia de `OnTriggerEnter` a favor de un `SphereCast` continuo, utilizando `LayerMasks` para ignorar geometría inerte.
+* **Component-Based UI:** La retroalimentación visual (Brillo de emisión y botón "Presiona E") se abstrajo en componentes independientes (`FeedbackVisual`), permitiendo a cualquier objeto del juego reaccionar a la vista del jugador sin ensuciar la lógica de negocio.
+* **Patrón Observer (Preparación):** `TuberiaBase` cuenta con un evento estático `Action` listo para notificar reparaciones sin acoplarse directamente a otros scripts.
 
-Estado Actual: Fase 3 - Completada (021 de julio de 2026) LUIS
-La Fase 3 (UI y Temporizador) está completamente terminada y validada. Se implementó el Patrón Observer en C# para desacoplar la lógica matemática (FloodManager) del renderizado gráfico (UIManager). El sistema calcula el tiempo y el nivel de agua en tiempo real. Por parte del equipo de trabajo, Tena y Axel ya integraron el posicionamiento definitivo de la cámara y la alineación del escenario. El repositorio en GitHub está sincronizado (merge conflicts resueltos) y el entorno local está libre de errores de compilación.
+### ⚠️ Directriz Arquitectónica Estricta para Level Design (Tena & Axel)
+**PROHIBIDO** instanciar objetos grises o modelos 3D puros en la escena principal. Todo el ecosistema de la `MainScene` debe ensamblarse arrastrando los Prefabs de la carpeta lógica maestra, ya que estos contienen la inyección de dependencias necesaria para que el juego funcione.
