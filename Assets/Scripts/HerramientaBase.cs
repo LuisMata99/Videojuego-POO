@@ -20,7 +20,7 @@ public abstract class HerramientaBase : MonoBehaviour, IInteractable
     public void Interact(PlayerInteractor interactor) // Implementación del método para interactuar (Polimorfismo)
     {
         // Guard Clause: Si el jugador ya tiene algo, no se hace nada
-        if (interactor.objetoEnMano != null) return;
+        if (interactor.ObjetoEnMano != null) return;
 
         interactor.EquiparObjeto(this.gameObject); // Manda a llamar al método para equipar un objeto
 

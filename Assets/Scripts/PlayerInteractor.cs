@@ -2,52 +2,105 @@ using UnityEngine;
 
 public class PlayerInteractor : MonoBehaviour
 {
-    [SerializeField] private KeyCode interactionKey = KeyCode.E;
-    [SerializeField] private KeyCode dropKey = KeyCode.G;
+    [Header("Configuración del Escáner Espacial")]
+    [SerializeField] private Transform puntoOrigenRayo; // Sustituye a interactionPoint
+    [SerializeField] private float distanciaInteraccion = 2f;
+    [SerializeField] private float radioEsfera = 0.5f;
+    [SerializeField] private LayerMask capaInteractuable;
 
-    // Configuración de interacción
-    [SerializeField] private float interactionRadius = 0.5f; // Radio de la interacción
-    [SerializeField] private float maxInteractionDistance = 2f; // Distancia máxima a la que se puede interactuar
-    [SerializeField] private Transform interactionPoint;  // Punto de origen de la interacción
-    [SerializeField] private LayerMask interactableLayer; // Filtra qué objetos se pueden detectar dentro de la zona de interacción
+    [Header("Configuración de Equipamiento")]
+    [SerializeField] private Transform puntoDeAgarre;
+    [SerializeField] private KeyCode teclaInteraccion = KeyCode.E;
+    [SerializeField] private KeyCode teclaSoltar = KeyCode.G;
 
-    // Configuración de equimamiento
-    [SerializeField] private Transform puntoDeAgarre; // Variables para implementar la lógica de las herramientas
-    public GameObject objetoEnMano { get; private set; }
-    private PlayerMovement playerMovement; //Almacena la referencia del script de movimiento
+    // Propiedad pública que permite a otros scripts leer qué sostiene el jugador, pero no modificarlo
+    public GameObject ObjetoEnMano { get; private set; }
 
-    private IInteractable _interactableEnfocadoActual; /* Variable para no llamar Enfocar() 60 veces por segundo, recuerda lo que se tenía
-                                                        * a la vista el frame anterior*/
+    // Caché de memoria para la detección continua
+    private FeedbackVisual feedbackMaterialActual;
+    private FeedbackVisualInteractuable feedbackUIActual;
+    private IInteractable interactuableActual;
 
-
-    private void Awake()
+    private void Update()
     {
-        // Se obtiene y se guarda la referencia en memoria una sola vez al instanciar el Prefab
-        playerMovement = GetComponent<PlayerMovement>();
+        EscanearEntorno();
+        ProcesarInput();
     }
 
-
-    void Update()
+    /// <summary>
+    /// Dispara un SphereCast para detectar objetos en la capa Interactuable.
+    /// Extrae los componentes de interfaz, lógica y feedback visual para procesarlos.
+    /// </summary>
+    private void EscanearEntorno()
     {
-        // 1. Detección continua (El "Qué")
-        ActualizarFocoVisual();
+        Vector3 origen = puntoOrigenRayo.position - (puntoOrigenRayo.forward * 0.5f);
+        bool impacto = Physics.SphereCast(
+            origen,
+            radioEsfera,
+            puntoOrigenRayo.forward,
+            out RaycastHit hitInfo,
+            distanciaInteraccion,
+            capaInteractuable
+        );
 
-        // 2. Escucha de eventos del teclado (El "Cuándo")
-        ProcesarEntradaUsuario();
-    }
-
-    private void ProcesarEntradaUsuario()
-    {
-        // Evaluación de la interacción usando la variable configurada en el Inspector
-        if (Input.GetKeyDown(interactionKey))
+        if (impacto)
         {
-            TryInteract();
+            // Extracción de componentes (Desacoplamiento)
+            FeedbackVisual nuevoFeedbackMat = hitInfo.collider.GetComponent<FeedbackVisual>();
+            FeedbackVisualInteractuable nuevoFeedbackUI = hitInfo.collider.GetComponent<FeedbackVisualInteractuable>();
+            IInteractable nuevoInteractuable = hitInfo.collider.GetComponent<IInteractable>();
+
+            // Si el jugador mira un objeto distinto al del frame anterior
+            if (nuevoInteractuable != interactuableActual)
+            {
+                LimpiarEnfoqueActual();
+
+                // Guardado en caché
+                feedbackMaterialActual = nuevoFeedbackMat;
+                feedbackUIActual = nuevoFeedbackUI;
+                interactuableActual = nuevoInteractuable;
+
+                // Encendido de sistemas visuales
+                if (feedbackMaterialActual != null) feedbackMaterialActual.Resaltar();
+                if (feedbackUIActual != null) feedbackUIActual.Encender();
+            }
+        }
+        else
+        {
+            LimpiarEnfoqueActual();
+        }
+    }
+
+    /// <summary>
+    /// Apaga de forma segura todos los sistemas visuales del último objeto mirado
+    /// y libera la memoria en caché.
+    /// </summary>
+    private void LimpiarEnfoqueActual()
+    {
+        if (feedbackMaterialActual != null) feedbackMaterialActual.Restaurar();
+        if (feedbackUIActual != null) feedbackUIActual.Apagar();
+
+        feedbackMaterialActual = null;
+        feedbackUIActual = null;
+        interactuableActual = null;
+    }
+
+    /// <summary>
+    /// Escucha el teclado para ejecutar los contratos lógicos de interacción (Recoger/Reparar)
+    /// o soltar la herramienta equipada aplicando físicas.
+    /// </summary>
+    private void ProcesarInput()
+    {
+        // Acción de Interactuar
+        if (Input.GetKeyDown(teclaInteraccion) && interactuableActual != null)
+        {
+            interactuableActual.Interact(this);
         }
 
-        // Evaluar soltar el objeto usando la variable configurada
-        if (Input.GetKeyDown(dropKey) && objetoEnMano != null)
+        // Acción de Soltar
+        if (Input.GetKeyDown(teclaSoltar) && ObjetoEnMano != null)
         {
-            if (objetoEnMano.TryGetComponent<HerramientaBase>(out HerramientaBase herramienta))
+            if (ObjetoEnMano.TryGetComponent<HerramientaBase>(out HerramientaBase herramienta))
             {
                 herramienta.Soltar(transform.forward);
                 RemoverObjeto();
@@ -55,92 +108,39 @@ public class PlayerInteractor : MonoBehaviour
         }
     }
 
-    private void ActualizarFocoVisual()
-    {
-        // Calcular un punto de origen desplazado hacia atrás desde un objeto de interacción, creando una dirección frontal.
-        Vector3 direction = transform.forward;
-        Vector3 origin = interactionPoint.position - (direction * 0.5f);
-
-        // Proyección de las físicas
-        bool impacto = Physics.SphereCast(
-            origin,
-            interactionRadius,
-            direction,
-            out RaycastHit hitInfo,
-            maxInteractionDistance,
-            interactableLayer);
-
-        if (impacto)
-        {
-            // Valida que el objeto tenga el contrato correcto
-            if (hitInfo.collider.TryGetComponent<IInteractable>(out IInteractable interactableDetectado))
-            {
-                // Si es un objeto distinto al que se estaba mirando en el frame anterior
-                if (interactableDetectado != _interactableEnfocadoActual)
-                {
-                    // Se apaga el anterior, se guarda el nuevo, y lo se enciende
-                    _interactableEnfocadoActual?.Desenfocar();
-                    _interactableEnfocadoActual = interactableDetectado;
-                    _interactableEnfocadoActual.Enfocar();
-                }
-            }
-        }
-        else
-        {
-            // 3. Limpieza de estado si el rayo no impacta nada
-            if (_interactableEnfocadoActual != null)
-            {
-                _interactableEnfocadoActual.Desenfocar();
-                _interactableEnfocadoActual = null;
-            }
-        }
-    }
-
-    private void TryInteract()
-    {
-        if (_interactableEnfocadoActual != null)
-        {
-            _interactableEnfocadoActual.Interact(this);
-        }
-    }
-
+    /// <summary>
+    /// Ancla espacialmente un objeto a la mano del jugador y lo guarda en memoria.
+    /// Se invoca desde los scripts de las herramientas (ej. LlaveInglesa).
+    /// </summary>
     public void EquiparObjeto(GameObject nuevoObjeto)
     {
-        // Valida que el jugador tenga las manos vacías
-        if (objetoEnMano != null)
+        if (ObjetoEnMano != null)
         {
             Debug.LogWarning("El jugador ya tiene un objeto en mano.");
             return;
         }
 
-        // 1. Asigna la variable en memoria para romper la cláusula de guarda
-        objetoEnMano = nuevoObjeto;
-
-        // 2. Ejecuta la lógica visual y espacial en la jerarquía de Unity
-        objetoEnMano.transform.SetParent(puntoDeAgarre);
-        objetoEnMano.transform.localPosition = Vector3.zero;
-        objetoEnMano.transform.localRotation = Quaternion.identity;
+        ObjetoEnMano = nuevoObjeto;
+        ObjetoEnMano.transform.SetParent(puntoDeAgarre);
+        ObjetoEnMano.transform.localPosition = Vector3.zero;
+        ObjetoEnMano.transform.localRotation = Quaternion.identity;
     }
 
+    /// <summary>
+    /// Elimina la referencia de la herramienta sostenida.
+    /// </summary>
     public void RemoverObjeto()
     {
-        objetoEnMano = null;
+        ObjetoEnMano = null;
     }
 
-    // Dibuja el cilindro de detección en la vista 'Scene' de Unity para depurar visualmente la orientación y el alcance.
+    // Dibujo de telemetría para el Editor de Unity
     private void OnDrawGizmos()
     {
-        if (interactionPoint == null) return;
-
-        // Vector frontal calculado exactamente igual que en el SphereCast
-        Vector3 direction = transform.forward;
-        Vector3 origin = interactionPoint.position - (direction * 0.5f);
-
-        // Se pinta el rayo de rojo
+        if (puntoOrigenRayo == null) return;
+        Vector3 origen = puntoOrigenRayo.position - (puntoOrigenRayo.forward * 0.5f);
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(origin, direction * maxInteractionDistance);
-
-        // Se pinta la esfera en el punto final para ver el grosor real del impacto
-        Gizmos.DrawWireSphere(origin + (direction * maxInteractionDistance), interactionRadius);
+        Gizmos.DrawRay(origen, puntoOrigenRayo.forward * distanciaInteraccion);
+        Gizmos.DrawWireSphere(origen + (puntoOrigenRayo.forward * distanciaInteraccion), radioEsfera);
     }
 }

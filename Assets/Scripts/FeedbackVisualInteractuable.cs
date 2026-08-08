@@ -22,7 +22,7 @@ public class FeedbackVisualInteractuable : MonoBehaviour
 
     public void Apagar()
     {
-        if (canvasFeedback == null)
+        if (canvasFeedback != null)
         {
             canvasFeedback.SetActive(false);
         }

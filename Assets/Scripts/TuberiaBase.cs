@@ -3,8 +3,10 @@ using UnityEngine;
 // Se definen los tipos de averías que puede tener una tubería
 public enum TipoAveria
 {
-    FugaFuerte, // Requiere Llave Inglesa
-    Fisura      // Requiere Cinta Adhesiva
+    NoAsignada = 0,
+    Fisura = 1,     // Requiere Cinta Adhesiva
+    FugaFuerte = 2 // Requiere Llave Inglesa
+    
 }
 
 public class TuberiaBase : MonoBehaviour, IInteractable
@@ -13,7 +15,14 @@ public class TuberiaBase : MonoBehaviour, IInteractable
 
     protected virtual void Awake()
     {
-        feedbackVisual = GetComponent < FeedbackVisualInteractuable >();
+        // 1. Obtención de referencias
+        feedbackVisual = GetComponent<FeedbackVisualInteractuable>();
+
+        // 2. Cláusula de guarda para la integridad del Level Design
+        if (tipoDeAveria == TipoAveria.NoAsignada)
+        {
+            Debug.LogError($"ERROR LÓGICO: La tubería '{gameObject.name}' no tiene una avería asignada. Selecciona una en el Inspector.", this);
+        }
     }
 
     public TipoAveria tipoDeAveria;
@@ -30,13 +39,13 @@ public class TuberiaBase : MonoBehaviour, IInteractable
             return;
         }
 
-        if (interactor.objetoEnMano == null)
+        if (interactor.ObjetoEnMano == null)
         {
             Debug.Log("Necesitas una herramienta para reparar esto.");
             return;
         }
 
-        if (interactor.objetoEnMano.TryGetComponent<HerramientaBase>(out HerramientaBase herramienta))
+        if (interactor.ObjetoEnMano.TryGetComponent<HerramientaBase>(out HerramientaBase herramienta))
         {
             if (herramienta.PuedeReparar(tipoDeAveria))
             {

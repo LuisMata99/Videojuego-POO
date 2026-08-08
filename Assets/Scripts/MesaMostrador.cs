@@ -18,7 +18,7 @@ public class MesaMostrador : MonoBehaviour, IInteractable
     public void Interact(PlayerInteractor interactor)
     {
 
-        bool jugadorOcupado = interactor.objetoEnMano != null;
+        bool jugadorOcupado = interactor.ObjetoEnMano != null;
         bool mesaOcupada = herramientaAlmacenada != null;
 
         // Si el jugador no tiene nada en las manos y la mesa no tiene nada guardado
@@ -38,7 +38,7 @@ public class MesaMostrador : MonoBehaviour, IInteractable
         // 3. Si el jugador tiene las manos ocupadas y la mesa no está llena
         if (jugadorOcupado && !mesaOcupada)
         {
-            herramientaAlmacenada = interactor.objetoEnMano;
+            herramientaAlmacenada = interactor.ObjetoEnMano;
             interactor.RemoverObjeto();
 
             herramientaAlmacenada.transform.SetParent(puntoDeMesa);

@@ -14,7 +14,7 @@ public class DispensadorDeHerramientas : MonoBehaviour, IInteractable
     public void Interact(PlayerInteractor interactor)
     {
         // Guard Clause: Si el jugador ya tiene algo en las manos, no se le da nada.
-        if (interactor.objetoEnMano != null)
+        if (interactor.ObjetoEnMano != null)
         {
             Debug.Log("Ya tienes las manos ocupadas.");
             return;
