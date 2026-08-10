@@ -1,62 +1,119 @@
 using UnityEngine;
-using System; // Requerido para usar Action
+using System;
 
 public class FloodManager : MonoBehaviour
 {
-    // EVENTO: Avisa al resto del juego que el agua subió
+    // EVENTOS DE ESTADO (UI y otros sistemas escucharán esto)
     public static event Action<float> OnWaterLevelChanged;
-    
-    // EVENTO: Desacopla el sistema lógico del tiempo de los sistemas de renderizado gráfico (UI)
     public static event Action<float> OnTimeChanged;
+    public static event Action OnVictoria;
+    public static event Action OnDerrota;
 
+    [Header("Mecánicas de Inundación")]
     [SerializeField] private float nivelMaximoAgua = 100f;
-    [SerializeField] private float velocidadInundacion = 5f; // Cuánta agua sube por segundo
+    [SerializeField] private float velocidadInundacion = 5f;
     private float nivelActualAgua = 0f;
 
-    [SerializeField] private float tiempoMaximoNivel = 180f; // Tiempo total de la partida en segundos
+    [Header("Temporizador")]
+    [SerializeField] private float tiempoMaximoNivel = 180f;
     private float tiempoRestante;
 
+    [Header("Condición de Victoria")]
+    [SerializeField] private int tuberiasTotalesNivel = 5;
+    private int tuberiasReparadas = 0;
+
+    // Bandera de control de estado para evitar que los eventos de fin de juego se disparen en cada frame del Update
+    private bool juegoTerminado = false;
 
     void Start()
     {
-        // Inicialización del estado base para evitar arrancar en 0 o mantener valores residuales en memoria si la escena recarga
         tiempoRestante = tiempoMaximoNivel;
+        // Nos aseguramos de que el tiempo corra normalmente al reiniciar la escena
+        Time.timeScale = 1f;
+    }
+
+    // PATRÓN OBSERVER: Suscripción y Desuscripción
+    private void OnEnable()
+    {
+        TuberiaBase.OnCualquierTuberiaReparada += RegistrarTuberiaReparada;
+    }
+
+    private void OnDisable()
+    {
+        TuberiaBase.OnCualquierTuberiaReparada -= RegistrarTuberiaReparada;
     }
 
     void Update()
     {
-        if (nivelActualAgua < nivelMaximoAgua)
+        // Early Return: Si el juego ya terminó, abortamos el cálculo matemático para ahorrar CPU
+        if (juegoTerminado) return;
+
+        ManejarInundacion();
+        ManejarTiempo();
+        ValidarCondicionesDeDerrota();
+    }
+
+    private void ManejarInundacion()
+    {
+        nivelActualAgua += velocidadInundacion * Time.deltaTime;
+        nivelActualAgua = Mathf.Clamp(nivelActualAgua, 0, nivelMaximoAgua);
+        OnWaterLevelChanged?.Invoke(nivelActualAgua / nivelMaximoAgua);
+    }
+
+    private void ManejarTiempo()
+    {
+        tiempoRestante -= Time.deltaTime;
+        tiempoRestante = Mathf.Max(0, tiempoRestante);
+        OnTimeChanged?.Invoke(tiempoRestante);
+    }
+
+    // EVALUACIÓN DE DERROTA
+    private void ValidarCondicionesDeDerrota()
+    {
+        if (nivelActualAgua >= nivelMaximoAgua || tiempoRestante <= 0)
         {
-            // Aumenta el nivel de agua basado en el tiempo, no en los frames
-            nivelActualAgua += velocidadInundacion * Time.deltaTime;
-
-            // Clampeamos para que no pase del máximo
-            nivelActualAgua = Mathf.Clamp(nivelActualAgua, 0, nivelMaximoAgua);
-
-            // Cálculo del porcentaje (de 0.0 a 1.0) para que la UI lo entienda fácilmente
-            float porcentajeAgua = nivelActualAgua / nivelMaximoAgua;
-
-            // DISPARO DEL EVENTO: El operador '?.' evita crasheos si nadie está escuchando
-            OnWaterLevelChanged?.Invoke(porcentajeAgua);
-        }
-
-        if (tiempoRestante > 0)
-        {
-            // Time.deltaTime garantiza una sustracción en segundos reales, ignorando las fluctuaciones de FPS del hardware
-            tiempoRestante -= Time.deltaTime;
-
-            // Evitar desbordamientos negativos y renderizados erróneos en la interfaz (ej. -00:01)
-            tiempoRestante = Mathf.Max(0, tiempoRestante);
-
-            OnTimeChanged?.Invoke(tiempoRestante);
+            EjecutarFinDeJuego(victoria: false);
         }
     }
 
-    // Método que se llama más adelante cuando el jugador repare una tubería
+    // EVALUACIÓN DE VICTORIA (Invocado por el evento estático de TuberiaBase)
+    private void RegistrarTuberiaReparada()
+    {
+        if (juegoTerminado) return;
+
+        tuberiasReparadas++;
+
+        // Reducimos un porcentaje del agua como recompensa al reparar (opcional)
+        ReducirAgua(15f);
+
+        if (tuberiasReparadas >= tuberiasTotalesNivel)
+        {
+            EjecutarFinDeJuego(victoria: true);
+        }
+    }
+
     public void ReducirAgua(float cantidad)
     {
         nivelActualAgua -= cantidad;
         nivelActualAgua = Mathf.Clamp(nivelActualAgua, 0, nivelMaximoAgua);
         OnWaterLevelChanged?.Invoke(nivelActualAgua / nivelMaximoAgua);
+    }
+
+    // GESTOR CENTRAL DE ESTADO
+    private void EjecutarFinDeJuego(bool victoria)
+    {
+        juegoTerminado = true;
+
+        // Efecto secundario (Side effect): Congelamos el motor de físicas y deltaTime globalmente
+        Time.timeScale = 0f;
+
+        if (victoria)
+        {
+            OnVictoria?.Invoke();
+        }
+        else
+        {
+            OnDerrota?.Invoke();
+        }
     }
 }
