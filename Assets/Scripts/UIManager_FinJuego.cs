@@ -9,14 +9,14 @@ public class UIManager_FinJuego : MonoBehaviour
     private void OnEnable()
     {
         // Suscripción a los eventos del motor de Luis
-        //FloodManager.OnVictoria += MostrarPantallaVictoria;
-        //FloodManager.OnDerrota += MostrarPantallaDerrota;
+        FloodManager.OnVictoria += MostrarPantallaVictoria;
+        FloodManager.OnDerrota += MostrarPantallaDerrota;
     }
 
     private void OnDisable()
     {
-        //FloodManager.OnVictoria -= MostrarPantallaVictoria;
-        //FloodManager.OnDerrota -= MostrarPantallaDerrota;
+        FloodManager.OnVictoria -= MostrarPantallaVictoria;
+        FloodManager.OnDerrota -= MostrarPantallaDerrota;
     }
 
     private void MostrarPantallaVictoria()
