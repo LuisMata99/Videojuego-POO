@@ -8,6 +8,7 @@ public enum TipoAveria
     FugaFuerte = 2
 }
 
+[RequireComponent(typeof(AudioSource))] // Obliga a Unity a requerir este componente para evitar NullReferenceExceptions
 public class TuberiaBase : MonoBehaviour, IInteractable
 {
     public static event Action OnCualquierTuberiaReparada;
@@ -20,9 +21,18 @@ public class TuberiaBase : MonoBehaviour, IInteractable
     [SerializeField] private GameObject fxFisura;
     [SerializeField] private GameObject fxRotura;
 
+    [Header("Efectos de Sonido (SFX)")]
+    [SerializeField] private AudioSource fuenteAudio;
+    [SerializeField] private AudioClip sfxFisura;
+    [SerializeField] private AudioClip sfxRotura;
+    [SerializeField] private AudioClip sfxReparacionExitosa; // Opcional, feedback para el jugador
+
     protected virtual void Awake()
     {
         feedbackVisual = GetComponent<FeedbackVisualInteractuable>();
+
+        // Asignación automática por si el Level Designer olvida arrastrar el componente en el Inspector
+        if (fuenteAudio == null) fuenteAudio = GetComponent<AudioSource>();
 
         // Previene fallos silenciosos en el Level Design, garantizando que el objeto inicie con un estado lógico válido
         if (tipoDeAveria == TipoAveria.NoAsignada)
@@ -33,14 +43,27 @@ public class TuberiaBase : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        // Acoplamiento visual al estado inicial para asegurar coherencia entre la variable lógica y el renderizado en escena
-        if (tipoDeAveria == TipoAveria.Fisura && fxFisura != null)
+        // Acoplamiento visual y sonoro al estado inicial
+        if (tipoDeAveria == TipoAveria.Fisura)
         {
-            fxFisura.SetActive(true);
+            if (fxFisura != null) fxFisura.SetActive(true);
+            ReproducirSonidoFuga(sfxFisura);
         }
-        else if (tipoDeAveria == TipoAveria.FugaFuerte && fxRotura != null)
+        else if (tipoDeAveria == TipoAveria.FugaFuerte)
         {
-            fxRotura.SetActive(true);
+            if (fxRotura != null) fxRotura.SetActive(true);
+            ReproducirSonidoFuga(sfxRotura);
+        }
+    }
+
+    // Método encapsulado para manejar la lógica repetitiva del audio
+    private void ReproducirSonidoFuga(AudioClip clipFuga)
+    {
+        if (fuenteAudio != null && clipFuga != null)
+        {
+            fuenteAudio.clip = clipFuga;
+            fuenteAudio.loop = true; // Side effect intencional: El agua debe sonar continuamente
+            fuenteAudio.Play();
         }
     }
 
@@ -89,13 +112,24 @@ public class TuberiaBase : MonoBehaviour, IInteractable
     {
         isRepaired = true;
 
-        // Side effect visual: Detenemos la emisión de partículas directamente desactivando los contenedores de agua
+        // Side effect visual: Se detiene la emisión de partículas
         if (fxFisura != null) fxFisura.SetActive(false);
         if (fxRotura != null) fxRotura.SetActive(false);
 
+        // Side effect sonoro: Se detiene el loop del agua y reproducimos el sonido de impacto/reparación
+        if (fuenteAudio != null)
+        {
+            fuenteAudio.Stop();
+
+            if (sfxReparacionExitosa != null)
+            {
+                fuenteAudio.PlayOneShot(sfxReparacionExitosa);
+            }
+        }
+
         Debug.Log("¡Tubería reparada exitosamente!");
 
-        // Invocación del evento global para que el FloodManager registre el avance de la partida
+        // Invocación del evento global
         OnCualquierTuberiaReparada?.Invoke();
     }
 }
