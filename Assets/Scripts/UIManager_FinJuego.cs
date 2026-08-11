@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager_FinJuego : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class UIManager_FinJuego : MonoBehaviour
 
     private void OnEnable()
     {
-        // Suscripción a los eventos del motor de Luis
         FloodManager.OnVictoria += MostrarPantallaVictoria;
         FloodManager.OnDerrota += MostrarPantallaDerrota;
     }
@@ -29,5 +29,19 @@ public class UIManager_FinJuego : MonoBehaviour
     {
         if (menuDerrota != null) menuDerrota.SetActive(true);
         Debug.Log("UI: Pantalla de Derrota encendida.");
+    }
+
+    // MÉTODOS PÚBLICOS PARA LOS BOTONES DE LA UI
+    public void ReiniciarNivel()
+    {
+        // Restauramos la escala del tiempo antes de recargar la escena
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void SalirJuego()
+    {
+        Debug.Log("Saliendo de la aplicación...");
+        Application.Quit();
     }
 }
