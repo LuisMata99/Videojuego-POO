@@ -3,9 +3,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float velocidad = 5f;
-
-    // Variable para controlar qué tan rápido gira el personaje
     [SerializeField] private float velocidadRotacion = 15f;
+
+    // Referencia al componente Animator de tu personaje
+    [SerializeField] private Animator anim;
 
     private Rigidbody rb;
     private Vector3 direccionMovimiento;
@@ -14,7 +15,11 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        transformCamara = Camera.main.transform; // Caché inicial
+
+        if (Camera.main != null)
+        {
+            transformCamara = Camera.main.transform; // Caché inicial
+        }
     }
 
     void Update()
@@ -22,17 +27,37 @@ public class PlayerMovement : MonoBehaviour
         float inputHorizontal = Input.GetAxisRaw("Horizontal");
         float inputVertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 forwardCam = transformCamara.forward;
-        Vector3 rightCam = transformCamara.right;
+        if (transformCamara != null)
+        {
+            Vector3 forwardCam = transformCamara.forward;
+            Vector3 rightCam = transformCamara.right;
 
-        // Se aplanan los vectores
-        forwardCam.y = 0f;
-        rightCam.y = 0f;
+            // Se aplanan los vectores
+            forwardCam.y = 0f;
+            rightCam.y = 0f;
 
-        forwardCam.Normalize();
-        rightCam.Normalize();
+            forwardCam.Normalize();
+            rightCam.Normalize();
 
-        direccionMovimiento = (forwardCam * inputVertical + rightCam * inputHorizontal).normalized;
+            direccionMovimiento = (forwardCam * inputVertical + rightCam * inputHorizontal).normalized;
+        }
+
+        // Evaluar si hay movimiento para controlar la animación
+        bool estaMoviendose = direccionMovimiento.sqrMagnitude > 0.01f;
+
+        if (anim != null)
+        {
+            anim.SetBool("isWalking", estaMoviendose);
+
+            if (estaMoviendose)
+            {
+                Debug.Log("¡El script detecta movimiento y envía isWalking = TRUE!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("¡ALERTA: La variable 'anim' es NULL! No has asignado el Animator en el Inspector.");
+        }
     }
 
     void FixedUpdate()
@@ -40,15 +65,18 @@ public class PlayerMovement : MonoBehaviour
         // 1. Movimiento
         rb.MovePosition(rb.position + direccionMovimiento * velocidad * Time.fixedDeltaTime);
 
-        // 2. Rotación
-        if (direccionMovimiento != Vector3.zero)
+        // 2. Rotación (Solo rotar si realmente se está aplicando input)
+        if (direccionMovimiento.sqrMagnitude > 0.01f)
         {
             Quaternion rotacionObjetivo = Quaternion.LookRotation(direccionMovimiento);
-
-            // POR QUÉ: Quaternion.Slerp suaviza la transición entre la rotación actual y el objetivo.
             Quaternion rotacionSuavizada = Quaternion.Slerp(rb.rotation, rotacionObjetivo, velocidadRotacion * Time.fixedDeltaTime);
 
             rb.MoveRotation(rotacionSuavizada);
+        }
+        else
+        {
+            // Detener cualquier velocidad angular física que intente hacerlo girar quieto
+            rb.angularVelocity = Vector3.zero;
         }
     }
 }
