@@ -13,18 +13,23 @@ public class DispensadorDeHerramientas : MonoBehaviour, IInteractable
 
     public void Interact(PlayerInteractor interactor)
     {
-        // Guard Clause: Si el jugador ya tiene algo en las manos, no se le da nada.
+        // Guard Clause: Aborta la ejecución para evitar un UnassignedReferenceException en la instanciación si el diseñador de niveles omitió la dependencia
+        if (prefabHerramienta == null)
+        {
+            Debug.LogWarning($"FALTA DE DISEÑO DE NIVEL: La mesa '{gameObject.name}' no tiene una herramienta asignada para dispensar. Revisa el Inspector.", this);
+            return;
+        }
+
+        // Guard Clause: Bloquea la creación de memoria basura evitando instanciar objetos si el jugador no puede recibirlos
         if (interactor.ObjetoEnMano != null)
         {
             Debug.Log("Ya tienes las manos ocupadas.");
             return;
         }
 
-        // 1. Instanciación: Creación de copia exacta del prefab en la posición actual del dispensador
         GameObject nuevaHerramienta = Instantiate(prefabHerramienta, transform.position, Quaternion.identity);
 
-        // 2. Encadenamiento de Eventos: Forzamos a la nueva herramienta a ejecutar su propia lógica de recogerse
-        // Como HerramientaBase implementa IInteractable, se llama a su contrato.
+        // Se aprovecha el contrato de la interfaz IInteractable para delegar la lógica de "recoger" al propio objeto instanciado, manteniendo el acoplamiento bajo
         if (nuevaHerramienta.TryGetComponent<IInteractable>(out IInteractable interactable))
         {
             interactable.Interact(interactor);
