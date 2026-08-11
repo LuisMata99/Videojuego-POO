@@ -1,0 +1,896 @@
+fileFormatVersion: 2
+guid: 966bd6b6dc89f1840a0927719a2c0736
+ModelImporter:
+  serializedVersion: 24501
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+    searchTexturesGlobally: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Zombie Idle
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 127
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages:
+    - 0.25
+    - 0.01
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    importUVs: -1
+    importVertexColors: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+    calculateBlendshapeNormalsDeltaFromImportedNormals: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Stylized_Zombie_Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandThumb1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandThumb2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandThumb3
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandIndex3
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandMiddle1
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandMiddle2
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandMiddle3
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandRing1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandRing2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandRing3
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandPinky1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandPinky2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_LeftHandPinky3
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandThumb1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandThumb2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandThumb3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandIndex3
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandMiddle1
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandMiddle2
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandMiddle3
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandRing1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandRing2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandRing3
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandPinky1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandPinky2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_RightHandPinky3
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Stylized_Zombie_Spine2
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: StylizedZombie@Zombie Idle(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Stylized_Zombie_Reference
+      parentName: StylizedZombie@Zombie Idle(Clone)
+      position: {x: 0.008160486, y: 0.0029990387, z: -0.19397442}
+      rotation: {x: 0.079433836, y: 0.056332864, z: 0.0091016665, w: 0.9952055}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Stylized_Zombie_Hips
+      parentName: Stylized_Zombie_Reference
+      position: {x: -0, y: 1, z: 0}
+      rotation: {x: -0.09061742, y: -0.03565961, z: 0.22961496, w: 0.96839756}
+      scale: {x: 1, y: 1.0000005, z: 1.0000002}
+    - name: Stylized_Zombie_LeftUpLeg
+      parentName: Stylized_Zombie_Hips
+      position: {x: -0.13476853, y: -1.4210854e-16, z: 0}
+      rotation: {x: 0.0056354925, y: -0.010176327, z: 0.48442653, w: 0.8747546}
+      scale: {x: 0.9999998, y: 1, z: 0.9999999}
+    - name: Stylized_Zombie_LeftLeg
+      parentName: Stylized_Zombie_LeftUpLeg
+      position: {x: -0.4489079, y: -7.105427e-17, z: 4.440892e-18}
+      rotation: {x: 0.0000000037252899, y: -0.06664735, z: -0.000000060943414, w: 0.99777657}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: Stylized_Zombie_LeftFoot
+      parentName: Stylized_Zombie_LeftLeg
+      position: {x: -0.41205558, y: -3.5527136e-17, z: 5.3290704e-17}
+      rotation: {x: 0.09330104, y: 0.563709, z: -0.18925901, w: 0.79856634}
+      scale: {x: 1.0000006, y: 1.0000006, z: 1.0000001}
+    - name: Stylized_Zombie_LeftToeBase
+      parentName: Stylized_Zombie_LeftFoot
+      position: {x: -0.14388932, y: -3.5527136e-17, z: 1.0658141e-16}
+      rotation: {x: 0.26056919, y: -0.4395716, z: -0.4383193, w: 0.73943007}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
+    - name: Stylized_Zombie_RightUpLeg
+      parentName: Stylized_Zombie_Hips
+      position: {x: 0.076427154, y: -0.111002006, z: 0}
+      rotation: {x: 0.0063860603, y: -0.009722922, z: 0.5489427, w: 0.8357791}
+      scale: {x: 1.0000002, y: 1.0000002, z: 0.99999976}
+    - name: Stylized_Zombie_RightLeg
+      parentName: Stylized_Zombie_RightUpLeg
+      position: {x: -0.4489079, y: 0, z: -8.881784e-18}
+      rotation: {x: -0.000000027474012, y: -0.06664732, z: -0.000000059517326, w: 0.99777657}
+      scale: {x: 0.9999997, y: 1.0000001, z: 1.0000001}
+    - name: Stylized_Zombie_RightFoot
+      parentName: Stylized_Zombie_RightLeg
+      position: {x: -0.41205558, y: 1.0658141e-16, z: 3.5527136e-17}
+      rotation: {x: -0.09330106, y: 0.563709, z: 0.18925898, w: 0.7985663}
+      scale: {x: 1.0000008, y: 1.0000002, z: 1.0000002}
+    - name: Stylized_Zombie_RightToeBase
+      parentName: Stylized_Zombie_RightFoot
+      position: {x: -0.14388932, y: 7.105427e-17, z: -3.5527136e-17}
+      rotation: {x: 0.43957162, y: -0.2605692, z: -0.73943, w: 0.43831939}
+      scale: {x: 0.9999997, y: 0.9999997, z: 0.9999998}
+    - name: Stylized_Zombie_Spine
+      parentName: Stylized_Zombie_Hips
+      position: {x: 0.032566953, y: 0.061962843, z: 0}
+      rotation: {x: -0.000000014901161, y: -0.0000000018626451, z: -0.85593295, w: 0.517087}
+      scale: {x: 1, y: 1, z: 0.99999976}
+    - name: Stylized_Zombie_Spine1
+      parentName: Stylized_Zombie_Spine
+      position: {x: -0.12666667, y: -5.292063e-17, z: 0}
+      rotation: {x: 0.000000003852598, y: 0.0000000063771965, z: -2.7755572e-17, w: 1}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000002}
+    - name: Stylized_Zombie_Spine2
+      parentName: Stylized_Zombie_Spine1
+      position: {x: -0.12666667, y: -3.5157062e-17, z: 0}
+      rotation: {x: -4.0867354e-10, y: 4.872023e-10, z: 0.16577888, w: 0.986163}
+      scale: {x: 0.9999998, y: 1.0000004, z: 0.99999976}
+    - name: Stylized_Zombie_LeftShoulder
+      parentName: Stylized_Zombie_Spine2
+      position: {x: -0.15084325, y: 0, z: 0}
+      rotation: {x: -0.0000000071414177, y: -0.000000016371985, z: 0.7054339, w: 0.7087757}
+      scale: {x: 0.99999934, y: 0.9999997, z: 1.0000001}
+    - name: Stylized_Zombie_LeftArm
+      parentName: Stylized_Zombie_LeftShoulder
+      position: {x: -0.08454606, y: 0, z: 0}
+      rotation: {x: 0.0026113486, y: -0.000624986, z: -0.14419828, w: 0.9895452}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
+    - name: Stylized_Zombie_LeftForeArm
+      parentName: Stylized_Zombie_LeftArm
+      position: {x: -0.37061444, y: -1.4210854e-16, z: 0}
+      rotation: {x: -0.006487093, y: 0.034168635, z: -0.007953723, w: 0.9993634}
+      scale: {x: 1.0000006, y: 1.0000001, z: 1.0000002}
+    - name: Stylized_Zombie_LeftHand
+      parentName: Stylized_Zombie_LeftForeArm
+      position: {x: -0.25153807, y: 2.842171e-16, z: 1.0658141e-16}
+      rotation: {x: -0.27856982, y: 0.3246063, z: 0.34913123, w: 0.8337488}
+      scale: {x: 1.0000006, y: 1.0000005, z: 1}
+    - name: Stylized_Zombie_LeftHandIndex1
+      parentName: Stylized_Zombie_LeftHand
+      position: {x: -0.12152336, y: 0.08523529, z: -0.03249805}
+      rotation: {x: 0.13520862, y: -0.26937145, z: -0.23131798, w: 0.9250134}
+      scale: {x: 1.0000007, y: 1.0000007, z: 1.0000004}
+    - name: Stylized_Zombie_LeftHandIndex2
+      parentName: Stylized_Zombie_LeftHandIndex1
+      position: {x: -0.042253193, y: 3.5527136e-17, z: 7.105427e-17}
+      rotation: {x: -0.05909646, y: -0.0038793655, z: 0.037150268, w: 0.9975533}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: Stylized_Zombie_LeftHandIndex3
+      parentName: Stylized_Zombie_LeftHandIndex2
+      position: {x: -0.030691642, y: -7.160938e-17, z: 0}
+      rotation: {x: 0.0038517928, y: 0.0038000345, z: -0.008334589, w: 0.9999507}
+      scale: {x: 1.0000006, y: 1.0000008, z: 1}
+    - name: Stylized_Zombie_LeftHandIndex4
+      parentName: Stylized_Zombie_LeftHandIndex3
+      position: {x: -0.019582229, y: 1.9317881e-16, z: 2.1316282e-16}
+      rotation: {x: 0.18667486, y: -0.10989466, z: -0.841299, w: 0.4952692}
+      scale: {x: 1.0000004, y: 1.0000002, z: 0.99999994}
+    - name: Stylized_Zombie_LeftHandMiddle1
+      parentName: Stylized_Zombie_LeftHand
+      position: {x: -0.10614905, y: 0.09873263, z: -0.060873512}
+      rotation: {x: 0.1157253, y: -0.2867747, z: -0.24513702, w: 0.9188449}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000006}
+    - name: Stylized_Zombie_LeftHandMiddle2
+      parentName: Stylized_Zombie_LeftHandMiddle1
+      position: {x: -0.048632517, y: 1.7763567e-16, z: 7.105427e-17}
+      rotation: {x: -0.00000009313226, y: -0, z: -0.00000006984919, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Stylized_Zombie_LeftHandMiddle3
+      parentName: Stylized_Zombie_LeftHandMiddle2
+      position: {x: -0.027652366, y: 2.5032781e-10, z: -0.0000000019076165}
+      rotation: {x: 0.00000007078052, y: -0.000000059604638, z: 0.00000007078051, w: 1}
+      scale: {x: 1.0000008, y: 1.0000005, z: 1}
+    - name: Stylized_Zombie_LeftHandMiddle4
+      parentName: Stylized_Zombie_LeftHandMiddle3
+      position: {x: -0.02005632, y: 0.000000001480823, z: -0.000000011284569}
+      rotation: {x: 0.1204046, y: -0.076854214, z: -0.8342777, w: 0.5325194}
+      scale: {x: 1.0000006, y: 0.99999994, z: 0.99999994}
+    - name: Stylized_Zombie_LeftHandPinky1
+      parentName: Stylized_Zombie_LeftHand
+      position: {x: -0.052871812, y: 0.091624565, z: -0.09902307}
+      rotation: {x: 0.14970462, y: -0.31900075, z: -0.2416682, w: 0.90411484}
+      scale: {x: 1.0000006, y: 1.0000005, z: 1.0000002}
+    - name: Stylized_Zombie_LeftHandPinky2
+      parentName: Stylized_Zombie_LeftHandPinky1
+      position: {x: -0.039150618, y: 0, z: 1.0658141e-16}
+      rotation: {x: -0.00546395, y: -0.0130606275, z: 0.034009025, w: 0.9993212}
+      scale: {x: 1, y: 1.0000004, z: 1.0000001}
+    - name: Stylized_Zombie_LeftHandPinky3
+      parentName: Stylized_Zombie_LeftHandPinky2
+      position: {x: -0.027737597, y: 1.0658141e-16, z: 7.105427e-17}
+      rotation: {x: 0.0028253568, y: 0.011171475, z: -0.01780183, w: 0.9997752}
+      scale: {x: 1.0000011, y: 1.000001, z: 1.0000001}
+    - name: Stylized_Zombie_LeftHandPinky4
+      parentName: Stylized_Zombie_LeftHandPinky3
+      position: {x: -0.016666146, y: 0, z: 3.5527136e-17}
+      rotation: {x: 0.06728313, y: -0.050602026, z: -0.7963649, w: 0.59892863}
+      scale: {x: 0.99999946, y: 0.9999992, z: 1}
+    - name: Stylized_Zombie_LeftHandRing1
+      parentName: Stylized_Zombie_LeftHand
+      position: {x: -0.08574372, y: 0.10040651, z: -0.084674954}
+      rotation: {x: 0.1348646, y: -0.2992583, z: -0.23824584, w: 0.91405416}
+      scale: {x: 1.0000006, y: 1.0000004, z: 1.0000002}
+    - name: Stylized_Zombie_LeftHandRing2
+      parentName: Stylized_Zombie_LeftHandRing1
+      position: {x: -0.042028368, y: 0, z: -1.0658141e-16}
+      rotation: {x: -0.017385125, y: -0.0048885616, z: 0.04009788, w: 0.9990325}
+      scale: {x: 0.99999994, y: 1.0000004, z: 1}
+    - name: Stylized_Zombie_LeftHandRing3
+      parentName: Stylized_Zombie_LeftHandRing2
+      position: {x: -0.030680727, y: 2.1316282e-16, z: -7.105427e-17}
+      rotation: {x: -0.012208127, y: -0.006196945, z: 0.040733673, w: 0.9990763}
+      scale: {x: 1.0000006, y: 0.99999994, z: 1.0000005}
+    - name: Stylized_Zombie_LeftHandRing4
+      parentName: Stylized_Zombie_LeftHandRing3
+      position: {x: -0.019233473, y: -1.2989609e-16, z: 3.5527136e-17}
+      rotation: {x: 0.10514718, y: -0.05958896, z: -0.8636251, w: 0.4894332}
+      scale: {x: 1.0000001, y: 0.99999994, z: 0.99999934}
+    - name: Stylized_Zombie_LeftHandThumb1
+      parentName: Stylized_Zombie_LeftHand
+      position: {x: -0.086051, y: 8.8817837e-17, z: 0}
+      rotation: {x: -0.13136168, y: 0.07857641, z: -0.030484576, w: 0.98774517}
+      scale: {x: 1.000001, y: 1.0000005, z: 1.0000005}
+    - name: Stylized_Zombie_LeftHandThumb2
+      parentName: Stylized_Zombie_LeftHandThumb1
+      position: {x: -0.026647706, y: 0, z: 1.4210854e-16}
+      rotation: {x: 0.19332063, y: -0.020785006, z: -0.028231924, w: 0.9805091}
+      scale: {x: 0.9999997, y: 1.0000002, z: 1.0000004}
+    - name: Stylized_Zombie_LeftHandThumb3
+      parentName: Stylized_Zombie_LeftHandThumb2
+      position: {x: -0.025431404, y: -7.105427e-17, z: -1.4210854e-16}
+      rotation: {x: -0.00000005960463, y: -0.00000007450579, z: 0.000000057741985, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1.0000001}
+    - name: Stylized_Zombie_LeftHandThumb4
+      parentName: Stylized_Zombie_LeftHandThumb3
+      position: {x: -0.02666746, y: 0.00000018343322, z: -0.00000016372434}
+      rotation: {x: 0.34090632, y: -0.2300396, z: -0.7555844, w: 0.50985956}
+      scale: {x: 1.0000005, y: 1.0000001, z: 1}
+    - name: Stylized_Zombie_Neck
+      parentName: Stylized_Zombie_Spine2
+      position: {x: -0.11970442, y: 0.04141615, z: 0}
+      rotation: {x: 0.010531253, y: 0.062646784, z: -0.16544397, w: 0.9841711}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
+    - name: Stylized_Zombie_Head
+      parentName: Stylized_Zombie_Neck
+      position: {x: -0.22579297, y: -1.3658801e-16, z: 0}
+      rotation: {x: -0.04491953, y: -0.04491951, z: 0.7056786, w: 0.70567864}
+      scale: {x: 0.99999946, y: 0.99999946, z: 0.9999998}
+    - name: Stylized_Zombie_RightShoulder
+      parentName: Stylized_Zombie_Spine2
+      position: {x: -0.11859022, y: 0.09322042, z: 0}
+      rotation: {x: 0.000000014179973, y: 0.000000010514942, z: 0.8984083, w: -0.43916118}
+      scale: {x: 0.9999997, y: 0.9999997, z: 1}
+    - name: Stylized_Zombie_RightArm
+      parentName: Stylized_Zombie_RightShoulder
+      position: {x: -0.08454606, y: 2.842171e-16, z: 0}
+      rotation: {x: -0.0026113028, y: -0.0006249467, z: 0.14419928, w: 0.9895451}
+      scale: {x: 0.9999996, y: 0.9999992, z: 0.99999994}
+    - name: Stylized_Zombie_RightForeArm
+      parentName: Stylized_Zombie_RightArm
+      position: {x: -0.37061444, y: -1.4210854e-16, z: 0}
+      rotation: {x: 0.0064870706, y: 0.034168478, z: 0.007953674, w: 0.99936336}
+      scale: {x: 1.0000002, y: 1.0000002, z: 0.9999998}
+    - name: Stylized_Zombie_RightHand
+      parentName: Stylized_Zombie_RightForeArm
+      position: {x: -0.25153807, y: 0, z: 1.4210854e-16}
+      rotation: {x: 0.27856955, y: 0.32460672, z: -0.3491306, w: 0.83374894}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: Stylized_Zombie_RightHandIndex1
+      parentName: Stylized_Zombie_RightHand
+      position: {x: -0.12152336, y: -0.08523529, z: -0.03249805}
+      rotation: {x: -0.13520847, y: -0.26937124, z: 0.23131678, w: 0.9250137}
+      scale: {x: 0.9999998, y: 1.0000002, z: 1.0000005}
+    - name: Stylized_Zombie_RightHandIndex2
+      parentName: Stylized_Zombie_RightHandIndex1
+      position: {x: -0.042253193, y: 3.5527136e-17, z: 1.4210854e-16}
+      rotation: {x: 0.059096243, y: -0.0038791276, z: -0.03714846, w: 0.9975533}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
+    - name: Stylized_Zombie_RightHandIndex3
+      parentName: Stylized_Zombie_RightHandIndex2
+      position: {x: -0.030691642, y: 1.2823076e-16, z: 7.105427e-17}
+      rotation: {x: -0.0038516992, y: 0.003800144, z: 0.008334737, w: 0.9999507}
+      scale: {x: 1.0000004, y: 1, z: 0.9999999}
+    - name: Stylized_Zombie_RightHandIndex4
+      parentName: Stylized_Zombie_RightHandIndex3
+      position: {x: -0.019582229, y: -1.5321078e-16, z: -7.105427e-17}
+      rotation: {x: 0.109894596, y: -0.18667492, z: -0.49526924, w: 0.84129906}
+      scale: {x: 0.9999998, y: 1, z: 1}
+    - name: Stylized_Zombie_RightHandMiddle1
+      parentName: Stylized_Zombie_RightHand
+      position: {x: -0.10614905, y: -0.09873263, z: -0.060873512}
+      rotation: {x: -0.115725204, y: -0.2867747, z: 0.24513629, w: 0.91884506}
+      scale: {x: 1.0000006, y: 1.0000008, z: 1.0000008}
+    - name: Stylized_Zombie_RightHandMiddle2
+      parentName: Stylized_Zombie_RightHandMiddle1
+      position: {x: -0.048632517, y: 5.3290704e-17, z: 0}
+      rotation: {x: -0.000000059604645, y: -0, z: -0.000000058673322, w: 1}
+      scale: {x: 1.0000004, y: 1.0000004, z: 0.99999994}
+    - name: Stylized_Zombie_RightHandMiddle3
+      parentName: Stylized_Zombie_RightHandMiddle2
+      position: {x: -0.027652366, y: -2.5032806e-10, z: -0.0000000019076165}
+      rotation: {x: 0.000000011175873, y: 0.00000008940696, z: 0.000000020489107, w: 1}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1}
+    - name: Stylized_Zombie_RightHandMiddle4
+      parentName: Stylized_Zombie_RightHandMiddle3
+      position: {x: -0.02005632, y: -0.000000001480823, z: -0.000000011284569}
+      rotation: {x: 0.07685429, y: -0.120404646, z: -0.5325194, w: 0.83427775}
+      scale: {x: 1.0000001, y: 0.9999998, z: 1.0000001}
+    - name: Stylized_Zombie_RightHandPinky1
+      parentName: Stylized_Zombie_RightHand
+      position: {x: -0.052871812, y: -0.091624565, z: -0.09902307}
+      rotation: {x: -0.14970458, y: -0.31900072, z: 0.24166766, w: 0.90411496}
+      scale: {x: 1.0000007, y: 1.0000008, z: 1.0000004}
+    - name: Stylized_Zombie_RightHandPinky2
+      parentName: Stylized_Zombie_RightHandPinky1
+      position: {x: -0.039150618, y: 1.4210854e-16, z: 7.105427e-17}
+      rotation: {x: 0.0054639573, y: -0.013060598, z: -0.03400909, w: 0.9993212}
+      scale: {x: 0.9999998, y: 0.99999994, z: 0.99999994}
+    - name: Stylized_Zombie_RightHandPinky3
+      parentName: Stylized_Zombie_RightHandPinky2
+      position: {x: -0.027737597, y: 3.5527136e-17, z: -3.5527136e-17}
+      rotation: {x: -0.0028253829, y: 0.011171533, z: 0.017801773, w: 0.9997752}
+      scale: {x: 0.9999998, y: 1.0000002, z: 1.0000002}
+    - name: Stylized_Zombie_RightHandPinky4
+      parentName: Stylized_Zombie_RightHandPinky3
+      position: {x: -0.016666146, y: -2.1316282e-16, z: 3.5527136e-17}
+      rotation: {x: 0.050602056, y: -0.067283064, z: -0.5989286, w: 0.79636484}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    - name: Stylized_Zombie_RightHandRing1
+      parentName: Stylized_Zombie_RightHand
+      position: {x: -0.08574372, y: -0.10040651, z: -0.084674954}
+      rotation: {x: -0.13486435, y: -0.29925868, z: 0.238245, w: 0.9140543}
+      scale: {x: 1.0000001, y: 1.0000008, z: 1.0000005}
+    - name: Stylized_Zombie_RightHandRing2
+      parentName: Stylized_Zombie_RightHandRing1
+      position: {x: -0.042028368, y: 7.105427e-17, z: 3.1974422e-16}
+      rotation: {x: 0.01738504, y: -0.004888919, z: -0.040100753, w: 0.99903244}
+      scale: {x: 1.0000006, y: 1.0000007, z: 0.99999976}
+    - name: Stylized_Zombie_RightHandRing3
+      parentName: Stylized_Zombie_RightHandRing2
+      position: {x: -0.030680727, y: -1.9539925e-16, z: -7.105427e-17}
+      rotation: {x: 0.012208105, y: -0.0061953645, z: -0.040725533, w: 0.99907666}
+      scale: {x: 1.0000005, y: 0.99999994, z: 1.0000004}
+    - name: Stylized_Zombie_RightHandRing4
+      parentName: Stylized_Zombie_RightHandRing3
+      position: {x: -0.019233473, y: 5.4400926e-17, z: -3.5527136e-17}
+      rotation: {x: 0.05958897, y: -0.10514722, z: -0.4894331, w: 0.86362517}
+      scale: {x: 0.9999998, y: 1, z: 0.9999998}
+    - name: Stylized_Zombie_RightHandThumb1
+      parentName: Stylized_Zombie_RightHand
+      position: {x: -0.086051, y: -1.2434498e-16, z: -2.842171e-16}
+      rotation: {x: 0.13136035, y: 0.078576826, z: 0.030480511, w: 0.98774546}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000006}
+    - name: Stylized_Zombie_RightHandThumb2
+      parentName: Stylized_Zombie_RightHandThumb1
+      position: {x: -0.026647706, y: -7.105427e-17, z: 0}
+      rotation: {x: -0.19332021, y: -0.020786894, z: 0.028235456, w: 0.98050904}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Stylized_Zombie_RightHandThumb3
+      parentName: Stylized_Zombie_RightHandThumb2
+      position: {x: -0.025431404, y: 1.8207657e-16, z: -1.4210854e-16}
+      rotation: {x: -0.000000029802312, y: -0.000000022351735, z: 0.000000026077023, w: 1}
+      scale: {x: 0.9999998, y: 1.0000004, z: 1}
+    - name: Stylized_Zombie_RightHandThumb4
+      parentName: Stylized_Zombie_RightHandThumb3
+      position: {x: -0.02666746, y: -0.00000018343322, z: -0.00000016372434}
+      rotation: {x: 0.23003952, y: -0.34090626, z: -0.50985956, w: 0.7555845}
+      scale: {x: 0.9999998, y: 1.0000001, z: 1.0000007}
+    - name: Stylized_Zombie_LOD
+      parentName: StylizedZombie@Zombie Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Stylized_Zombie_LOD0
+      parentName: Stylized_Zombie_LOD
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Stylized_Zombie_LOD1
+      parentName: Stylized_Zombie_LOD
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
