@@ -37,7 +37,9 @@ public class TuberiaBase : MonoBehaviour, IInteractable
         // Previene fallos silenciosos en el Level Design, garantizando que el objeto inicie con un estado lógico válido
         if (tipoDeAveria == TipoAveria.NoAsignada)
         {
+            #if UNITY_EDITOR
             Debug.LogError($"ERROR LÓGICO: La tubería '{gameObject.name}' no tiene una avería asignada.", this);
+            #endif
         }
     }
 
@@ -71,13 +73,11 @@ public class TuberiaBase : MonoBehaviour, IInteractable
     {
         if (isRepaired)
         {
-            Debug.Log("La tubería no necesita reparación");
             return;
         }
 
         if (interactor.ObjetoEnMano == null)
         {
-            Debug.Log("Necesitas una herramienta para reparar esto.");
             return;
         }
 
@@ -89,12 +89,10 @@ public class TuberiaBase : MonoBehaviour, IInteractable
             }
             else
             {
-                Debug.Log("Herramienta incorrecta para este tipo de avería.");
             }
         }
         else
         {
-            Debug.Log("El objeto que sostienes no es una herramienta válida para reparaciones.");
         }
     }
 
@@ -126,9 +124,6 @@ public class TuberiaBase : MonoBehaviour, IInteractable
                 fuenteAudio.PlayOneShot(sfxReparacionExitosa);
             }
         }
-
-        Debug.Log("¡Tubería reparada exitosamente!");
-
         // Invocación del evento global
         OnCualquierTuberiaReparada?.Invoke();
     }

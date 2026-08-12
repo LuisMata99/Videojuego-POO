@@ -19,7 +19,7 @@ public class FloodManager : MonoBehaviour
     private float tiempoRestante;
 
     [Header("Condición de Victoria")]
-    [SerializeField] private int tuberiasTotalesNivel = 5;
+    [SerializeField] private int tuberiasTotalesNivel;
     private int tuberiasReparadas = 0;
 
     // Bandera de control de estado para evitar que los eventos de fin de juego se disparen en cada frame del Update
@@ -30,6 +30,16 @@ public class FloodManager : MonoBehaviour
         tiempoRestante = tiempoMaximoNivel;
         // Nos aseguramos de que el tiempo corra normalmente al reiniciar la escena
         Time.timeScale = 1f;
+
+        TuberiaBase[] tuberiasEnEscena = FindObjectsByType<TuberiaBase>(FindObjectsInactive.Exclude);
+        tuberiasTotalesNivel = tuberiasEnEscena.Length;
+
+        if (tuberiasTotalesNivel == 0)
+        {
+            #if UNITY_EDITOR
+            Debug.LogWarning("FloodManager: Memoria vacía. No se detectaron objetos TuberiaBase en la jerarquía.");
+            #endif
+        }
     }
 
     // PATRÓN OBSERVER: Suscripción y Desuscripción

@@ -5,7 +5,6 @@ public class PlayerInteractor : MonoBehaviour
     [Header("Configuración del Escáner Espacial")]
     [SerializeField] private Transform puntoOrigenRayo; // Sustituye a interactionPoint
     [SerializeField] private float distanciaInteraccion = 2f;
-    [SerializeField] private float radioEsfera = 0.5f;
     [SerializeField] private LayerMask capaInteractuable;
 
     [Header("Configuración de Equipamiento")]
@@ -33,22 +32,21 @@ public class PlayerInteractor : MonoBehaviour
     /// </summary>
     private void EscanearEntorno()
     {
-        Vector3 origen = puntoOrigenRayo.position - (puntoOrigenRayo.forward * 0.5f);
-        bool impacto = Physics.SphereCast(
-            origen,
-            radioEsfera,
-            puntoOrigenRayo.forward,
-            out RaycastHit hitInfo,
-            distanciaInteraccion,
-            capaInteractuable
-        );
+        Vector3 centroEsfera = puntoOrigenRayo.position + (puntoOrigenRayo.forward * (distanciaInteraccion / 2f));
+        float radioSuperposicion = distanciaInteraccion / 2f;
 
-        if (impacto)
+        // POR QUÉ: OverlapSphere omite el cálculo de trayectorias direccionales. Detecta geometrías incluso si 
+        // el colisionador del jugador ya está penetrando la malla del objetivo, anulando el error 'Inside Collider Ignore'.
+        Collider[] impactos = Physics.OverlapSphere(centroEsfera, radioSuperposicion, capaInteractuable);
+
+        if (impactos.Length > 0)
         {
+            Collider objetoDetectado = impactos[0];
+
             // Extracción de componentes (Desacoplamiento)
-            FeedbackVisual nuevoFeedbackMat = hitInfo.collider.GetComponent<FeedbackVisual>();
-            FeedbackVisualInteractuable nuevoFeedbackUI = hitInfo.collider.GetComponent<FeedbackVisualInteractuable>();
-            IInteractable nuevoInteractuable = hitInfo.collider.GetComponent<IInteractable>();
+            FeedbackVisual nuevoFeedbackMat = objetoDetectado.GetComponent<FeedbackVisual>();
+            FeedbackVisualInteractuable nuevoFeedbackUI = objetoDetectado.GetComponent<FeedbackVisualInteractuable>();
+            IInteractable nuevoInteractuable = objetoDetectado.GetComponent<IInteractable>();
 
             // Si el jugador mira un objeto distinto al del frame anterior
             if (nuevoInteractuable != interactuableActual)
@@ -116,7 +114,9 @@ public class PlayerInteractor : MonoBehaviour
     {
         if (ObjetoEnMano != null)
         {
+            #if UNITY_EDITOR
             Debug.LogWarning("El jugador ya tiene un objeto en mano.");
+            #endif
             return;
         }
 
@@ -138,9 +138,9 @@ public class PlayerInteractor : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (puntoOrigenRayo == null) return;
-        Vector3 origen = puntoOrigenRayo.position - (puntoOrigenRayo.forward * 0.5f);
+        Vector3 centroEsfera = puntoOrigenRayo.position + (puntoOrigenRayo.forward * (distanciaInteraccion / 2f));
+        float radioSuperposicion = distanciaInteraccion / 2f;
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(origen, puntoOrigenRayo.forward * distanciaInteraccion);
-        Gizmos.DrawWireSphere(origen + (puntoOrigenRayo.forward * distanciaInteraccion), radioEsfera);
+        Gizmos.DrawWireSphere(centroEsfera, radioSuperposicion);
     }
 }

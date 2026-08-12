@@ -24,14 +24,12 @@ public class MesaMostrador : MonoBehaviour, IInteractable
         // Si el jugador no tiene nada en las manos y la mesa no tiene nada guardado
         if (!jugadorOcupado && !mesaOcupada)
         {
-            Debug.Log("Ninguno de los dos tiene nada para interactuar.");
             return;
         }
 
         // Si el jugador tiene las manos ocupadas y la mesa está llena
         if (jugadorOcupado && mesaOcupada)
         {
-            Debug.Log("La mesa está llena. No puedes guardar la herramienta.");
             return;
         }
 

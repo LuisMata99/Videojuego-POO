@@ -42,21 +42,12 @@ public class PlayerMovement : MonoBehaviour
             direccionMovimiento = (forwardCam * inputVertical + rightCam * inputHorizontal).normalized;
         }
 
-        // Evaluar si hay movimiento para controlar la animación
+        // Se utiliza sqrMagnitude por rendimiento, evitando el cálculo de raíz cuadrada de .magnitude
         bool estaMoviendose = direccionMovimiento.sqrMagnitude > 0.01f;
 
         if (anim != null)
         {
             anim.SetBool("isWalking", estaMoviendose);
-
-            if (estaMoviendose)
-            {
-                Debug.Log("¡El script detecta movimiento y envía isWalking = TRUE!");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("¡ALERTA: La variable 'anim' es NULL! No has asignado el Animator en el Inspector.");
         }
     }
 

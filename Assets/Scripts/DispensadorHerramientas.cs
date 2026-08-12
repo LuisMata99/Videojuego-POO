@@ -16,14 +16,15 @@ public class DispensadorDeHerramientas : MonoBehaviour, IInteractable
         // Guard Clause: Aborta la ejecución para evitar un UnassignedReferenceException en la instanciación si el diseñador de niveles omitió la dependencia
         if (prefabHerramienta == null)
         {
+            #if UNITY_EDITOR
             Debug.LogWarning($"FALTA DE DISEÑO DE NIVEL: La mesa '{gameObject.name}' no tiene una herramienta asignada para dispensar. Revisa el Inspector.", this);
             return;
+            #endif
         }
 
         // Guard Clause: Bloquea la creación de memoria basura evitando instanciar objetos si el jugador no puede recibirlos
         if (interactor.ObjetoEnMano != null)
         {
-            Debug.Log("Ya tienes las manos ocupadas.");
             return;
         }
 

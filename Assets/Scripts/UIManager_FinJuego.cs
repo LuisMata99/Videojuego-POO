@@ -22,13 +22,11 @@ public class UIManager_FinJuego : MonoBehaviour
     private void MostrarPantallaVictoria()
     {
         if (menuVictoria != null) menuVictoria.SetActive(true);
-        Debug.Log("UI: Pantalla de Victoria encendida.");
     }
 
     private void MostrarPantallaDerrota()
     {
         if (menuDerrota != null) menuDerrota.SetActive(true);
-        Debug.Log("UI: Pantalla de Derrota encendida.");
     }
 
     // MÉTODOS PÚBLICOS PARA LOS BOTONES DE LA UI
@@ -41,7 +39,6 @@ public class UIManager_FinJuego : MonoBehaviour
 
     public void SalirJuego()
     {
-        Debug.Log("Saliendo de la aplicación...");
         Application.Quit();
     }
 }
